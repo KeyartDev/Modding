@@ -5,6 +5,6 @@ import net.minecraft.world.level.block.Blocks;
 
 public class SomeBlock extends Block {
     public SomeBlock() {
-        super(Properties.copy(Blocks.IRON_BLOCK).noOcclusion().requiresCorrectToolForDrops());
+        super(Properties.copy(Blocks.IRON_BLOCK).noOcclusion().requiresCorrectToolForDrops().);
     }
 }
