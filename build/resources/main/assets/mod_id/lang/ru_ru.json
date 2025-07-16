@@ -4,5 +4,6 @@
   "item.mod_id.example_item.desc": "Просто предмет с дополнительным текстом",
   "block.mod_id.some_block": "Блок",
   "block.mod_id.some_block_ore": "Руда блока",
-  "item.mod_id.some_block_frag": "Фрагмент блока"
+  "item.mod_id.some_block_frag": "Фрагмент блока",
+  "block.mod_id.nc_block": "Блок без коллизии"
 }

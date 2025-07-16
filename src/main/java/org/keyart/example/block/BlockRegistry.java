@@ -16,9 +16,12 @@ import java.util.function.Supplier;
 public class BlockRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Example.MODID);
 
-    public static final RegistryObject<Block> EXAMPLE_BLOCK =registerBlock("some_block", SomeBlock::new);
+    public static final RegistryObject<Block> EXAMPLE_BLOCK =
+            registerBlock("some_block", SomeBlock::new);
 
-    public static final RegistryObject<Block> SOME_BLOCK_ORE = registerBlock("some_block_ore", SomeBlockOre::new);
+    public static final RegistryObject<Block> SOME_BLOCK_ORE =
+            registerBlock("some_block_ore", SomeBlockOre::new);
+
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

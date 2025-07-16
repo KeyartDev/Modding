@@ -4,5 +4,6 @@
   "item.mod_id.example_item.desc": "Some item with hover text",
   "block.mod_id.some_block": "Block",
   "block.mod_id.some_block_ore": "Block ore",
-  "item.mod_id.some_block_frag": "Block fragment"
+  "item.mod_id.some_block_frag": "Block fragment",
+  "block.mod_id.nc_block": "NC block"
 }
