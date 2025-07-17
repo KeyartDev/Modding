@@ -1,8 +1,12 @@
 {
   "item.mod_id.example_item": "Item",
   "creativeTab.example.example_creative_tab": "Creative tab",
-  "item.mod_id.example_item.desc": "Some item with hover text",
+  "item.mod_id.example_item.desc": "Some item with hover text.",
   "block.mod_id.some_block": "Block",
   "block.mod_id.some_block_ore": "Block ore",
-  "item.mod_id.some_block_frag": "Block fragment"
+  "item.mod_id.some_block_frag": "Block fragment",
+  "item.mod_id.magic_wand": "Magic wand",
+  "item.mod_id.nether_brush": "Nether brush",
+  "item.mod_id.mystic_clock": "Mystic clock",
+  "block.mod_id.func_block": "Functional block"
 }

@@ -1,8 +1,12 @@
 {
   "item.mod_id.example_item": "Предмет",
   "creativeTab.example.example_creative_tab": "Вкладка",
-  "item.mod_id.example_item.desc": "Просто предмет с дополнительным текстом",
+  "item.mod_id.example_item.desc": "Просто предмет с дополнительным текстом.",
   "block.mod_id.some_block": "Блок",
   "block.mod_id.some_block_ore": "Руда блока",
-  "item.mod_id.some_block_frag": "Фрагмент блока"
+  "item.mod_id.some_block_frag": "Фрагмент блока",
+  "item.mod_id.magic_wand": "Волшебный посох",
+  "item.mod_id.nether_brush": "Адская кисть",
+  "item.mod_id.mystic_clock": "Мистические часы",
+  "block.mod_id.func_block": "Функциональный блок"
 }

@@ -26,6 +26,10 @@ public class CreativeTabRegistry {
                                 pOutput.accept(BlockRegistry.EXAMPLE_BLOCK.get());
                                 pOutput.accept(BlockRegistry.SOME_BLOCK_ORE.get());
                                 pOutput.accept(ItemRegistry.SOME_BLOCK_FRAG.get());
+                                pOutput.accept(ItemRegistry.MAGIC_WAND.get());
+                                pOutput.accept(ItemRegistry.NETHER_BRUSH.get());
+                                pOutput.accept(ItemRegistry.MYSTIC_CLOCK.get());
+                                pOutput.accept(BlockRegistry.FUNC_BLOCK.get());
                             })).build());
 
     public static void register(IEventBus bus) {

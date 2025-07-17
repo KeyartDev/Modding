@@ -22,12 +22,16 @@ public class BlockRegistry {
     public static final RegistryObject<Block> SOME_BLOCK_ORE =
             registerBlock("some_block_ore", SomeBlockOre::new);
 
+    public static final RegistryObject<Block> FUNC_BLOCK =
+            registerBlock("func_block", FuncBlock::new);
+
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
+
 
     public static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
         return ItemRegistry.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));

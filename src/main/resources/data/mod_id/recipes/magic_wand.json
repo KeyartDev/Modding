@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting/shaped",
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "gdg",
+    " g ",
+    " s "
+  ],
+  "result": {
+    "item": "mod_id:magic_wand"
+  }
+}
