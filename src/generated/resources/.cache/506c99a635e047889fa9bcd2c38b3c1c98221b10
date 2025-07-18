@@ -1,0 +1,10 @@
+// 1.20.1	2025-07-18T13:21:37.4835208	Block States: mod_id
+076c763478132a7cee14bfa0ae7f808fd7705c06 assets/mod_id/blockstates/func_block.json
+89449400d67ac0033cb347a6dc3d1b6ac369f8e3 assets/mod_id/blockstates/some_block.json
+615d809ca2320c1af9cb7d844da24543a45074d3 assets/mod_id/blockstates/some_block_ore.json
+452a2266f0c4b608134baa0531095b621b7b95a4 assets/mod_id/models/block/func_block.json
+8f580a58e43fd4606e190169c7585c5a830eef67 assets/mod_id/models/block/some_block.json
+a87e5a97b3e3d9d618af1d10f2b8ceb836b119d7 assets/mod_id/models/block/some_block_ore.json
+62677f7c32528fd142a57cdf458ffc41be10d55f assets/mod_id/models/item/func_block.json
+a6b60786dd7ef095005361f7398eadacb6d9c110 assets/mod_id/models/item/some_block.json
+550fbb1adf442337401554270883994e51af769a assets/mod_id/models/item/some_block_ore.json
