@@ -2,7 +2,7 @@ package org.keyart.example.core.datagen.providers.loot;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
@@ -41,5 +41,16 @@ public class EGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                         ItemRegistry.MYSTIC_CLOCK.get()
                 )
         );
+
+        add("diamonds_from_zombie",
+                new AddItemModifier(
+                        new LootItemCondition[]{
+                                LootTableIdCondition.builder(
+                                        ResourceLocation.parse("minecraft:entities/zombie")
+                                ).build()
+                        },
+                        Items.DIAMOND,
+                        3
+                ));
     }
 }

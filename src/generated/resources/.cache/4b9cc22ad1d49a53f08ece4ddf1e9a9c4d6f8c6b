@@ -1,4 +1,5 @@
-// 1.20.1	2025-07-21T12:58:47.7174157	Global Loot Modifiers : mod_id
-9c051047831abd9e22c0369bc561f0d65c1661aa data/forge/loot_modifiers/global_loot_modifiers.json
-db6fb7d9b0b6f35c940dd2f92f1fb86d0d2daf9b data/mod_id/loot_modifiers/mystic_clock_form_shipwreck.json
-bc2706a27bf3b1b7eabcb2ac44e7a12be0b29b0a data/mod_id/loot_modifiers/nether_brush_from_fortress.json
+// 1.20.1	2025-07-21T20:26:57.5141737	Global Loot Modifiers : mod_id
+0d1333c079e25fb6b6b610be517673dc86327d96 data/forge/loot_modifiers/global_loot_modifiers.json
+c04095fc8a43de9b77e054df9379d371af0ad8cb data/mod_id/loot_modifiers/diamonds_from_zombie.json
+a7aa4632bff03ddbb4b57ef48f7896f6162c5818 data/mod_id/loot_modifiers/mystic_clock_form_shipwreck.json
+f6c6b3a83a201a9bf59e56fb7d1b1f4181e8299e data/mod_id/loot_modifiers/nether_brush_from_fortress.json

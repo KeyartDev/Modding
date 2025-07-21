@@ -8,7 +8,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,13 +22,25 @@ public class AddItemModifier extends LootModifier {
             .and(ForgeRegistries.ITEMS.getCodec()
                     .fieldOf("item")
                     .forGetter(m -> m.item))
+            .and(Codec.INT
+                    .fieldOf("count")
+                    .forGetter(m -> m.count))
             .apply(inst, AddItemModifier::new)));
 
     private final Item item;
+    private int count = 1;
+
+
 
     public AddItemModifier(LootItemCondition[] conditionsIn, Item item) {
         super(conditionsIn);
         this.item = item;
+    }
+
+    public AddItemModifier(LootItemCondition[] conditionsIn, Item item, int count) {
+        super(conditionsIn);
+        this.item = item;
+        this.count = count;
     }
 
     @Override
@@ -40,7 +51,7 @@ public class AddItemModifier extends LootModifier {
             }
         }
 
-        generatedLoot.add(new ItemStack(this.item));
+        generatedLoot.add(new ItemStack(this.item, this.count));
 
         return generatedLoot;
     }
