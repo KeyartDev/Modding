@@ -12,10 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 import org.keyart.example.Example;
-import org.keyart.example.common.item.ExampleItem;
-import org.keyart.example.common.item.MagicWandItem;
-import org.keyart.example.common.item.MysticClockItem;
-import org.keyart.example.common.item.NetherBrushItem;
+import org.keyart.example.common.item.*;
 
 import java.util.List;
 
@@ -44,6 +41,9 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> MYSTIC_CLOCK =
             ITEMS.register("mystic_clock", MysticClockItem::new);
+
+    public static final RegistryObject<Item> IT_ITEM =
+            ITEMS.register("it_item", InteractTestsItem::new);
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);

@@ -6,7 +6,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
 import org.keyart.example.Example;
 import org.keyart.example.core.registry.BlockRegistry;
 import org.keyart.example.core.registry.ItemRegistry;
@@ -30,19 +29,19 @@ public class ERecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
                 .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(ItemRegistry.MAGIC_WAND.get())));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockRegistry.EXAMPLE_BLOCK.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockRegistry.SOME_BLOCK.get(), 1)
                 .pattern("fff")
                 .pattern("fff")
                 .pattern("fff")
                 .define('f', ItemRegistry.SOME_BLOCK_FRAG.get())
                 .unlockedBy(getHasName(ItemRegistry.SOME_BLOCK_FRAG.get()), has(ItemRegistry.SOME_BLOCK_FRAG.get()))
-                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(BlockRegistry.EXAMPLE_BLOCK.get())));
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(BlockRegistry.SOME_BLOCK.get())));
 
 
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.SOME_BLOCK_FRAG.get(), 9)
-                .requires(BlockRegistry.EXAMPLE_BLOCK.get())
-                .unlockedBy("hasSomeBlock", has(BlockRegistry.EXAMPLE_BLOCK.get()))
+                .requires(BlockRegistry.SOME_BLOCK.get())
+                .unlockedBy("hasSomeBlock", has(BlockRegistry.SOME_BLOCK.get()))
                 .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID,
                         "shapeless/" + getItemName(ItemRegistry.SOME_BLOCK_FRAG.get())));
 

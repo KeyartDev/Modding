@@ -29,18 +29,27 @@ public class EBlocksTagProvider extends BlockTagsProvider {
                 .add(Blocks.ANDESITE)
                 .add(Blocks.DIORITE)
                 .add(Blocks.GRANITE);
+
+        tag(BlockTags.FENCES)
+                .add(BlockRegistry.SOME_FENCE.get());
+
+        tag(BlockTags.FENCE_GATES)
+                .add(BlockRegistry.SOME_FENCE_GATE.get());
+
+        tag(BlockTags.WALLS)
+                .add(BlockRegistry.SOME_WALL.get());
     }
 
     private void registerMineableTags() {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(BlockRegistry.EXAMPLE_BLOCK.get())
+                .add(BlockRegistry.SOME_BLOCK.get())
                 .add(BlockRegistry.SOME_BLOCK_ORE.get());
     }
 
     private void registerToolRequirementsTags() {
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SOME_BLOCK_ORE.get())
-                .add(BlockRegistry.EXAMPLE_BLOCK.get());
+                .add(BlockRegistry.SOME_BLOCK.get());
     }
 
 }

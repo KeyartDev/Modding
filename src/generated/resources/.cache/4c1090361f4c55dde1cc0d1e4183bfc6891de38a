@@ -1,6 +1,13 @@
-// 1.20.1	2025-07-18T13:19:55.2143533	Item Models: mod_id
+// 1.20.1	2025-07-21T13:26:58.8921137	Item Models: mod_id
 a0d3130876e35613cb778ce5379327456282b7f0 assets/mod_id/models/item/example_item.json
-e26fecfa406c2fa455082cf44e95a61651b00ab3 assets/mod_id/models/item/magic_wand.json
+ab2f65102f05eb76b9a0a627f6e671a5cc070154 assets/mod_id/models/item/it_item.json
 bad83476e000a16548febe4b575f03dd89788d48 assets/mod_id/models/item/mystic_clock.json
 55405a5de9e0181e5fb5bf54f47477f2512d1b2d assets/mod_id/models/item/nether_brush.json
 99279db79d8b9f57f05f9547a00b87f2ce743195 assets/mod_id/models/item/some_block_frag.json
+5dc63c66e3c069f12950b01e5edbe667c6f292f8 assets/mod_id/models/item/some_button.json
+1226d46ff581d2da69c402f389efbde675a4f846 assets/mod_id/models/item/some_fence.json
+98d60e58460931c7e02614758573fbf501d0a3c9 assets/mod_id/models/item/some_fence_gate.json
+11380e787d1f71b282cfe52e11bd9d5e99fcc139 assets/mod_id/models/item/some_pressure_plate.json
+f10a1ff1d8de94ce0dd225d32c8c2c32f7a8293f assets/mod_id/models/item/some_slab.json
+9ac9e1c598d6e71a2276fd7529a13261faf94c0e assets/mod_id/models/item/some_stairs.json
+445d99e33fcd592941b32e3dc95d690a6d9d0cb9 assets/mod_id/models/item/some_wall.json

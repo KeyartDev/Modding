@@ -1,7 +1,6 @@
 package org.keyart.example.core.datagen.providers.loot;
 
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -26,8 +25,18 @@ public class EBlockLootProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(BlockRegistry.EXAMPLE_BLOCK.get());
+        dropSelf(BlockRegistry.SOME_BLOCK.get());
         dropSelf(BlockRegistry.FUNC_BLOCK.get());
+
+        dropSelf(BlockRegistry.SOME_FENCE.get());
+        dropSelf(BlockRegistry.SOME_FENCE_GATE.get());
+        dropSelf(BlockRegistry.SOME_WALL.get());
+        dropSelf(BlockRegistry.SOME_BUTTON.get());
+        dropSelf(BlockRegistry.SOME_PRESSURE_PLATE.get());
+        dropSelf(BlockRegistry.SOME_STAIRS.get());
+
+        add(BlockRegistry.SOME_SLAB.get(),
+                block -> createSlabItemTable(BlockRegistry.SOME_SLAB.get()));
 
         addOreDrop(BlockRegistry.SOME_BLOCK_ORE.get(), ItemRegistry.SOME_BLOCK_FRAG.get(), 1, 2);
     }

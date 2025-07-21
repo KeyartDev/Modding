@@ -8,5 +8,15 @@
   "item.mod_id.magic_wand": "Волшебный посох",
   "item.mod_id.nether_brush": "Адская кисть",
   "item.mod_id.mystic_clock": "Мистические часы",
-  "block.mod_id.func_block": "Функциональный блок"
+  "block.mod_id.func_block": "Функциональный блок",
+  "item.mod_id.it_item": "Интерактивный предмет",
+  "item.mod_id.it_item.desc": "Кулдаун ещё: %d с.",
+
+  "block.mod_id.some_fence": "Забор",
+  "block.mod_id.some_fence_gate": "Калитка",
+  "block.mod_id.some_wall": "Стена",
+  "block.mod_id.some_slab": "Плита",
+  "block.mod_id.some_button": "Кнопка",
+  "block.mod_id.some_stairs": "Ступеньки",
+  "block.mod_id.some_pressure_plate": "Нажимная плита"
 }

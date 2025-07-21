@@ -21,13 +21,22 @@ public class CreativeTabRegistry {
                                     new ItemStack(ItemRegistry.EXAMPLE_ITEM.get()))
                             .displayItems(((pParameters, pOutput) -> { //Далее идёт список отображаемых предметов
                                 pOutput.accept(ItemRegistry.EXAMPLE_ITEM.get());
-                                pOutput.accept(BlockRegistry.EXAMPLE_BLOCK.get());
+                                pOutput.accept(BlockRegistry.SOME_BLOCK.get());
                                 pOutput.accept(BlockRegistry.SOME_BLOCK_ORE.get());
                                 pOutput.accept(ItemRegistry.SOME_BLOCK_FRAG.get());
                                 pOutput.accept(ItemRegistry.MAGIC_WAND.get());
                                 pOutput.accept(ItemRegistry.NETHER_BRUSH.get());
                                 pOutput.accept(ItemRegistry.MYSTIC_CLOCK.get());
                                 pOutput.accept(BlockRegistry.FUNC_BLOCK.get());
+                                pOutput.accept(ItemRegistry.IT_ITEM.get());
+
+                                pOutput.accept(BlockRegistry.SOME_STAIRS.get());
+                                pOutput.accept(BlockRegistry.SOME_SLAB.get());
+                                pOutput.accept(BlockRegistry.SOME_FENCE.get());
+                                pOutput.accept(BlockRegistry.SOME_FENCE_GATE.get());
+                                pOutput.accept(BlockRegistry.SOME_BUTTON.get());
+                                pOutput.accept(BlockRegistry.SOME_WALL.get());
+                                pOutput.accept(BlockRegistry.SOME_PRESSURE_PLATE.get());
                             })).build());
 
     public static void register(IEventBus bus) {

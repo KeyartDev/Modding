@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "mod_id:item/magic_wand_3d"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "mod_id:item/magic_wand_2d"
+    },
+    "ground": {
+      "parent": "mod_id:item/magic_wand_2d"
+    },
+    "fixed": {
+      "parent": "mod_id:item/magic_wand_2d"
+    }
+  }
+}

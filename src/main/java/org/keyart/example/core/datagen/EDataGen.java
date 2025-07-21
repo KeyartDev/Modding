@@ -5,7 +5,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -13,6 +12,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.keyart.example.Example;
 import org.keyart.example.core.datagen.providers.loot.EBlockLootProvider;
+import org.keyart.example.core.datagen.providers.loot.EGlobalLootModifiersProvider;
 import org.keyart.example.core.datagen.providers.models.EBlockStateProvider;
 import org.keyart.example.core.datagen.providers.models.EItemModelProvider;
 import org.keyart.example.core.datagen.providers.recipe.ERecipeProvider;
@@ -52,6 +52,8 @@ public class EDataGen {
         EBlocksTagProvider blocksTagProvider = generator.addProvider(true, new EBlocksTagProvider(packOutput, lookupProvider, fileHelper));
 
         generator.addProvider(true, new EItemsTagProvider(packOutput, lookupProvider, blocksTagProvider.contentsGetter(), fileHelper));
+
+        generator.addProvider(true, new EGlobalLootModifiersProvider(packOutput));
 
         generator.addProvider(true, new LootTableProvider(packOutput, Set.of(), List.of(
                 new LootTableProvider.SubProviderEntry(EBlockLootProvider::new, LootContextParamSets.BLOCK))));

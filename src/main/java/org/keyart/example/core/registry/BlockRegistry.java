@@ -2,7 +2,10 @@ package org.keyart.example.core.registry;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,8 +20,44 @@ import java.util.function.Supplier;
 public class BlockRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Example.MODID);
 
-    public static final RegistryObject<Block> EXAMPLE_BLOCK =
+    public static final RegistryObject<Block> SOME_BLOCK =
             registerBlock("some_block", SomeBlock::new);
+
+    public static final RegistryObject<Block> SOME_STAIRS =
+            registerBlock("some_stairs", () -> new StairBlock(
+                    () -> BlockRegistry.SOME_BLOCK.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(SOME_BLOCK.get())
+            ));
+
+    public static final RegistryObject<Block> SOME_SLAB =
+            registerBlock("some_slab", () ->
+                    new SlabBlock(BlockBehaviour.Properties.copy(SOME_BLOCK.get())));
+
+    public static final RegistryObject<Block> SOME_BUTTON =
+            registerBlock("some_button", () ->
+                    new ButtonBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BUTTON),
+                            BlockSetType.STONE, 30, true));
+
+    public static final RegistryObject<Block> SOME_PRESSURE_PLATE =
+            registerBlock("some_pressure_plate", () ->
+                    new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING,
+                            BlockBehaviour.Properties.copy(Blocks.STONE_PRESSURE_PLATE),
+                            BlockSetType.STONE));
+
+    public static final RegistryObject<Block> SOME_FENCE =
+            registerBlock("some_fence", () ->
+                    new FenceBlock(BlockBehaviour.Properties.copy(SOME_BLOCK.get())));
+
+    public static final RegistryObject<Block> SOME_FENCE_GATE =
+            registerBlock("some_fence_gate", () ->
+                    new FenceGateBlock(BlockBehaviour.Properties.copy(SOME_BLOCK.get()),
+                            WoodType.JUNGLE));
+
+    public static final RegistryObject<Block> SOME_WALL =
+            registerBlock("some_wall", () ->
+                    new WallBlock(BlockBehaviour.Properties.copy(SOME_BLOCK.get())));
+
+
 
     public static final RegistryObject<Block> SOME_BLOCK_ORE =
             registerBlock("some_block_ore", SomeBlockOre::new);

@@ -8,5 +8,15 @@
   "item.mod_id.magic_wand": "Magic wand",
   "item.mod_id.nether_brush": "Nether brush",
   "item.mod_id.mystic_clock": "Mystic clock",
-  "block.mod_id.func_block": "Functional block"
+  "block.mod_id.func_block": "Functional block",
+  "item.mod_id.it_item": "Interact item",
+  "item.mod_id.it_item.desc": "Cooldown: %1d s.",
+
+  "block.mod_id.some_fence": "Some fence",
+  "block.mod_id.some_fence_gate": "Some fence gate",
+  "block.mod_id.some_wall": "Some wall",
+  "block.mod_id.some_slab": "Some slab",
+  "block.mod_id.some_button": "Some button",
+  "block.mod_id.some_stairs": "Some stairs",
+  "block.mod_id.some_pressure_plate": "Some pressure plate"
 }
