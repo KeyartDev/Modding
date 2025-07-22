@@ -7,6 +7,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import org.keyart.example.Example;
+import org.keyart.example.common.item.tool.EToolTiers;
+import org.keyart.example.core.registry.ItemRegistry;
+import org.keyart.example.core.tags.CustomBlockTags;
 
 import java.util.concurrent.CompletableFuture;
 

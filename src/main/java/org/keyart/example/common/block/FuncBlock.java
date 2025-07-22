@@ -25,8 +25,8 @@ public class FuncBlock extends Block {
         super(Properties.of()
                 .sound(SoundType.TUFF)
                 .strength(10, 1200)
-                .instabreak()
-                .speedFactor(0.8f));
+                .speedFactor(0.8f)
+                .requiresCorrectToolForDrops());
     }
 
     @Override

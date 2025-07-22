@@ -3,6 +3,7 @@ package org.keyart.example;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -35,7 +36,7 @@ public class Example {
         IEventBus modEventBus = context.getModEventBus();
 
         // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
+
 
         ItemRegistry.register(modEventBus);
         BlockRegistry.register(modEventBus);
@@ -45,23 +46,20 @@ public class Example {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+
+        modEventBus.addListener(this::commonSetup);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-        LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-
-        if (Config.logDirtBlock) LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+        event.enqueueWork(() -> {
+           ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BlockRegistry.SEVEN_COLOR.getId(), BlockRegistry.SEVEN_COLOR_POTTED);
+        });
     }
 
     // Add the example block item to the building blocks tab

@@ -18,5 +18,16 @@
   "block.mod_id.some_slab": "Плита",
   "block.mod_id.some_button": "Кнопка",
   "block.mod_id.some_stairs": "Ступеньки",
-  "block.mod_id.some_pressure_plate": "Нажимная плита"
+  "block.mod_id.some_pressure_plate": "Нажимная плита",
+
+  "item.mod_id.some_sword": "Меч",
+  "item.mod_id.some_axe": "Топор",
+  "item.mod_id.some_pickaxe": "Кирка",
+  "item.mod_id.some_shovel": "Лопата",
+  "item.mod_id.some_hoe": "Мотыга",
+
+  "item.mod_id.strawberry_seeds": "Семена клубники",
+  "item.mod_id.strawberry": "Клубника",
+
+  "block.mod_id.seven_color_flower": "Семицвет"
 }

@@ -1,18 +1,19 @@
 package org.keyart.example.core.tags;
 
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import org.keyart.example.Example;
 
-public class CustomBlockTags {
-    public static final TagKey<Block> STONE_BRICKS = tag("stone_rocks");
-    public static final TagKey<Block> NEEDS_SOME_TOOL = tag("needs_some_tool");
+public class CustomItemTags {
 
-    private static TagKey<Block> tag(String name) {
-        return BlockTags.create(
+
+
+    private static TagKey<Item> tag(String name) {
+        return ItemTags.create(
                 ResourceLocation.fromNamespaceAndPath(Example.MODID, name)
         );
     }

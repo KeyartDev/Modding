@@ -37,6 +37,17 @@ public class CreativeTabRegistry {
                                 pOutput.accept(BlockRegistry.SOME_BUTTON.get());
                                 pOutput.accept(BlockRegistry.SOME_WALL.get());
                                 pOutput.accept(BlockRegistry.SOME_PRESSURE_PLATE.get());
+
+                                pOutput.accept(ItemRegistry.SOME_SWORD.get());
+                                pOutput.accept(ItemRegistry.SOME_AXE.get());
+                                pOutput.accept(ItemRegistry.SOME_PICKAXE.get());
+                                pOutput.accept(ItemRegistry.SOME_SHOVEL.get());
+                                pOutput.accept(ItemRegistry.SOME_HOE.get());
+
+                                pOutput.accept(ItemRegistry.STRAWBERRY_SEEDS.get());
+                                pOutput.accept(ItemRegistry.STRAWBERRY.get());
+
+                                pOutput.accept(BlockRegistry.SEVEN_COLOR.get());
                             })).build());
 
     public static void register(IEventBus bus) {

@@ -1,6 +1,7 @@
 {
   "values": [
     "mod_id:some_block",
-    "mod_id:some_block_ore"
+    "mod_id:some_block_ore",
+    "mod_id:func_block"
   ]
 }

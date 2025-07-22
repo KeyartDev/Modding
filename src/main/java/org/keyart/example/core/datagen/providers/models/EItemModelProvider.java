@@ -24,6 +24,8 @@ public class EItemModelProvider extends ItemModelProvider {
         basicItem(ItemRegistry.MYSTIC_CLOCK.get());
         basicItem(ItemRegistry.SOME_BLOCK_FRAG.get());
         basicItem(ItemRegistry.IT_ITEM.get());
+        basicItem(ItemRegistry.STRAWBERRY_SEEDS.get());
+        basicItem(ItemRegistry.STRAWBERRY.get());
 
         handheldItem(ItemRegistry.NETHER_BRUSH);
 
@@ -35,6 +37,14 @@ public class EItemModelProvider extends ItemModelProvider {
         fenceItem(BlockRegistry.SOME_FENCE, BlockRegistry.SOME_BLOCK);
         buttonItem(BlockRegistry.SOME_BUTTON, BlockRegistry.SOME_BLOCK);
         wallItem(BlockRegistry.SOME_WALL, BlockRegistry.SOME_BLOCK);
+
+        handheldItem(ItemRegistry.SOME_SWORD);
+        handheldItem(ItemRegistry.SOME_AXE);
+        handheldItem(ItemRegistry.SOME_PICKAXE);
+        handheldItem(ItemRegistry.SOME_SHOVEL);
+        handheldItem(ItemRegistry.SOME_HOE);
+
+        simpleBlockItemBlockTexture(BlockRegistry.SEVEN_COLOR);
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
@@ -69,4 +79,12 @@ public class EItemModelProvider extends ItemModelProvider {
                 ResourceLocation.parse("item/generated")).texture("layer0",
                 ResourceLocation.fromNamespaceAndPath(Example.MODID, "item/" + item.getId().getPath()));
     }
+
+    private ItemModelBuilder simpleBlockItemBlockTexture(RegistryObject<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(Example.MODID, "block/" + item.getId().getPath()));
+    }
+
+
 }

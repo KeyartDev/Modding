@@ -1,5 +1,6 @@
 package org.keyart.example.core.registry;
 
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -13,6 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.keyart.example.Example;
 import org.keyart.example.common.block.FuncBlock;
 import org.keyart.example.common.block.SomeBlock;
+import org.keyart.example.common.block.crop.StrawberryCropBlock;
 import org.keyart.example.common.block.ore.SomeBlockOre;
 
 import java.util.function.Supplier;
@@ -64,6 +66,29 @@ public class BlockRegistry {
 
     public static final RegistryObject<Block> FUNC_BLOCK =
             registerBlock("func_block", FuncBlock::new);
+
+
+    public static final RegistryObject<Block> STRAWBERRY_CROP =
+            BLOCKS.register("strawberry_crop", () ->
+                    new StrawberryCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
+
+
+    public static final RegistryObject<Block> SEVEN_COLOR =
+            registerBlock("seven_color_flower", () ->
+                    new FlowerBlock(() -> MobEffects.LUCK, 5,
+                            BlockBehaviour.Properties.copy(Blocks.ALLIUM)
+                                    .noCollission()
+                                    .noOcclusion())
+            );
+
+    public static final RegistryObject<Block> SEVEN_COLOR_POTTED =
+            BLOCKS.register("potted_seven_color_flower", () ->
+                    new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), BlockRegistry.SEVEN_COLOR,
+                            BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM)
+                                    .noOcclusion())
+            );
+
+
 
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

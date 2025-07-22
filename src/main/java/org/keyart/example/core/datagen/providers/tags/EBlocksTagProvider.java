@@ -9,6 +9,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import org.keyart.example.Example;
 import org.keyart.example.core.registry.BlockRegistry;
+import org.keyart.example.core.registry.ItemRegistry;
 import org.keyart.example.core.tags.CustomBlockTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -38,18 +39,24 @@ public class EBlocksTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.WALLS)
                 .add(BlockRegistry.SOME_WALL.get());
+
+
     }
 
     private void registerMineableTags() {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(BlockRegistry.SOME_BLOCK.get())
-                .add(BlockRegistry.SOME_BLOCK_ORE.get());
+                .add(BlockRegistry.SOME_BLOCK_ORE.get())
+                .add(BlockRegistry.FUNC_BLOCK.get());
     }
 
     private void registerToolRequirementsTags() {
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SOME_BLOCK_ORE.get())
                 .add(BlockRegistry.SOME_BLOCK.get());
+
+        tag(CustomBlockTags.NEEDS_SOME_TOOL)
+                .add(BlockRegistry.FUNC_BLOCK.get());
     }
 
 }

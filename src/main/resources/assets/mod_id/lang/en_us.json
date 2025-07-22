@@ -18,5 +18,16 @@
   "block.mod_id.some_slab": "Some slab",
   "block.mod_id.some_button": "Some button",
   "block.mod_id.some_stairs": "Some stairs",
-  "block.mod_id.some_pressure_plate": "Some pressure plate"
+  "block.mod_id.some_pressure_plate": "Some pressure plate",
+
+  "item.mod_id.some_sword": "Some sword",
+  "item.mod_id.some_axe": "Some axe",
+  "item.mod_id.some_pickaxe": "Some pickaxe",
+  "item.mod_id.some_shovel": "Some shovel",
+  "item.mod_id.some_hoe": "Some hoe",
+
+  "item.mod_id.strawberry_seeds": "Strawberry seeds",
+  "item.mod_id.strawberry": "Strawberry",
+
+  "block.mod_id.seven_color_flower": "Seven-color flower"
 }
