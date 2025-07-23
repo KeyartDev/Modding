@@ -9,7 +9,6 @@ import net.minecraftforge.common.TierSortingRegistry;
 import org.keyart.example.Example;
 import org.keyart.example.core.registry.ItemRegistry;
 import org.keyart.example.core.tags.CustomBlockTags;
-import org.keyart.example.core.tags.CustomItemTags;
 
 import java.util.List;
 

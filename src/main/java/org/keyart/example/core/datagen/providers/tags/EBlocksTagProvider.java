@@ -9,7 +9,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import org.keyart.example.Example;
 import org.keyart.example.core.registry.BlockRegistry;
-import org.keyart.example.core.registry.ItemRegistry;
 import org.keyart.example.core.tags.CustomBlockTags;
 
 import java.util.concurrent.CompletableFuture;
