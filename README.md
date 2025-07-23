@@ -4,18 +4,25 @@
   - [Стандартный предмет](#создание);
   - [Создание предмета с 2D моделью в инвентаре и с 3D моделью в руке](#создание-предмета-с-2d-моделью-в-инвентаре-и-с-3d-моделью-в-рукекак-у-подзорной-трубы);
   - [Инструменты](#инструменты);
-  - [Еда](#еда);
-- [Блок](#блок);
+  - [Еда](#еда).
+- [Блок](#блок):
   - [Стандартный блок](#создание-1);
   - [Растения](#растенияурожай);
-  - [Цветок и цветок в горшке](#цветок-и-цветок-в-горшке);
+  - [Цветок и цветок в горшке](#цветок-и-цветок-в-горшке).
 - [Теги](#теги):
 - [Генерация данных](#генерация-данных);
   - [Генерация моделей блоков/предметов](#генерация-моделей-блоковпредметов);
   - [Генерация рецептов](#генерация-рецептов);
   - [Генерация тегов](#генерация-тегов);
   - [Генерация лут-таблиц](#генерация-лут-таблиц);
-  - [Модификатор лута](#модификатор-лута);
+  - [Модификатор лута](#модификатор-лута).
+- [Селяне](#селяне):
+  - [Изменение торговли](#изменение-торговли);
+  - [Создание собственной профессии](#создание-собственной-профессии);
+- [Звуки](#звуки):
+  - [Добавление звука](#добавление-звука);
+  - [Добавление музыкальной пластинки](#добавление-музыкальной-пластинки).
+- [Привязка клавиш](#привязка-клавиш).
 ## Предмет
 ### Создание
 - Добавить класс-регистратор и зарегестрировать его в основном классе мода;
@@ -817,3 +824,185 @@ new LootItemCondition[] {
 **Интеграция в GatherDataEvent**   
 Ничего особенного. Это серверные данные!  
 Осталось только запустить **runData**.
+
+## Селяне
+### Изменение торговли
+Чтобы изменить торговлю селян, нужно перехватить событие *VillagerTradesEvent*:
+```java
+@Mod.EventBusSubscriber(modid = Example.MODID)
+public class EEvents {
+    @SubscribeEvent
+    public static void addCustomTrades(VillagerTradesEvent event) {
+        if (event.getType() == VillagerProfession.FARMER) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 2),
+                    new ItemStack(ItemRegistry.STRAWBERRY.get(), 1), 10, 8, 0.02f));
+
+            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 4),
+                    new ItemStack(ItemRegistry.STRAWBERRY_SEEDS.get(), 3), 20, 9, 0.035f));
+        }
+
+        if (event.getType() == VillagerRegistry.FUNC_EXPERT.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 25),
+                    new ItemStack(ItemRegistry.IT_ITEM.get(), 1), 1, 15, 0.02f
+            ));
+
+            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 30),
+                    new ItemStack(ItemRegistry.MYSTIC_CLOCK.get(), 1), 1, 25, 0.02f
+            ));
+        }
+    }
+}
+```
+Разбор кода:
+- event.getType() == VillagerProfession.FARMER - из события берём текущую формируемую профессию и сравниваем её с фермером, чтобы для него добавить торги;
+- Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades() - из события вытаскиваем текущие торги;
+- trades.get(1).add(...) - добавляем ему торги для 1-го уровня селянина.
+
+> [!TIP]
+> У странствующего торговца также можно модифицировать торги. Отличается только перехватываемое событие - *WandererTradesEvent*.
+
+### Создание собственной профессии
+Для этого потребуется создать новый класс регистратор, а в нём две отложенные регистроции: *PoiType* и *VillagerProfession*:
+```java
+public class VillagerRegistry {
+    public static final DeferredRegister<PoiType> POI_TYPES =
+            DeferredRegister.create(ForgeRegistries.POI_TYPES, Example.MODID);
+
+    public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS =
+            DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, Example.MODID);
+
+
+    public static final RegistryObject<PoiType> FUNC_POI =
+            POI_TYPES.register("func_poi", () ->
+                    new PoiType(ImmutableSet.copyOf(BlockRegistry.FUNC_BLOCK.get().getStateDefinition().getPossibleStates()),
+                            1, 1));
+
+    public static final RegistryObject<VillagerProfession> FUNC_EXPERT =
+            VILLAGER_PROFESSIONS.register("func_expert", () -> new VillagerProfession("func_expert",
+                    poiTypeHolder -> poiTypeHolder.get() == FUNC_POI.get(), poiTypeHolder -> poiTypeHolder.get() == FUNC_POI.get(),
+                    ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_ARMORER));
+
+
+    public static void register(IEventBus bus) {
+        POI_TYPES.register(bus);
+        VILLAGER_PROFESSIONS.register(bus);
+    }
+}
+```
+Также нужен новый провайдер для тегов poi:
+```java
+public class EPoiTypeTagsProvider extends PoiTypeTagsProvider {
+    public EPoiTypeTagsProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(pOutput, pProvider, Example.MODID, existingFileHelper);
+    }
+
+    @Override
+    protected void addTags(HolderLookup.Provider pProvider) {
+        tag(PoiTypeTags.ACQUIRABLE_JOB_SITE)
+                .addOptional(ResourceLocation.fromNamespaceAndPath(Example.MODID, "func_poi"));
+    }
+}
+```
+И не забыть про **текстуру** для селянина вашей профессии!
+## Звуки
+### Добавление звука
+Создаём новый класс-регистратор:
+```java
+public class SoundRegistry {
+    public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
+            DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Example.MODID);
+
+    public static final RegistryObject<SoundEvent> PIP_SOUND = registerSoundEvents("pip_sound_ev");
+
+    private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
+        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Example.MODID, name)));
+    }
+
+
+    public static void register(IEventBus bus) {
+        SOUND_EVENTS.register(bus);
+    }
+}
+```
+Добавляем звуковой файл в *assets/mod_id/sounds/* и создаём файл **sounds.json** по пути *assets/mod_id/*. Его содержимое:
+```json
+{
+  "id_вашего_звука": {
+    "subtitle": "sounds.mod_id.pip_sound",
+    "sounds": [
+      "mod_id:название_вашего_звукогового_файла"
+    ]
+  }
+}
+```
+> [!IMPORTANT]
+> Все звуковые файлы должны быть в формате ***.ogg** и в **моно-режиме** звучания!
+
+### Добавление музыкальной пластинки
+Во-первых добавляем файл музыки в класс-регистратор, а затем в *sounds.json*:
+```json
+"kind_necro": {
+    "sounds": [
+      "mod_id:kind_necro"
+    ],
+    "stream": true
+}
+```
+Регистрируем пластинку:
+```java
+public static final RegistryObject<Item> KIND_NECRO_DISK =
+            ITEMS.register("kind_necro_disk", () ->
+                    new RecordItem(6, SoundRegistry.KIND_NECRO, new Item.Properties().stacksTo(1), 3350));
+```
+Переносим текстуру пластинки в textures/item и добавляем в генератор моделей как basicItem.
+### Привязка клавиш
+Для определения клавиш нужно создать отдельный класс:
+```java
+public class KeyBinding {
+    public static final String EXAMPLE_KEY_CATEGORY = "key.category.mod_id.example";
+    public static final String EXAMPLE_KEY = "key.mod_id.example";
+
+    public static final KeyMapping EXAMPLED_KEY = new KeyMapping(EXAMPLE_KEY, KeyConflictContext.IN_GAME,
+            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_X, EXAMPLE_KEY_CATEGORY);
+}
+```
+Чтобы их зарегистрировать, нужно перехватить событие *RegisterKeyMappingsEvent*:
+```java
+@Mod.EventBusSubscriber(modid = Example.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class EClientModBusEvents {
+    @SubscribeEvent
+    public static void onKeyRegister(RegisterKeyMappingsEvent event) {
+        event.register(KeyBinding.EXAMPLED_KEY);
+    }
+}
+```
+Теперь, чтобы как-то использовать это, мы перехватим другое событие - *InputEvent.Key* и выведем в чат сообщение:
+```java
+@Mod.EventBusSubscriber(modid = Example.MODID, value = Dist.CLIENT)
+public class EClientEvents {
+
+    @SubscribeEvent
+    public static void onKeyInput(InputEvent.Key event) {
+        if (KeyBinding.EXAMPLED_KEY.consumeClick()) {
+            Minecraft.getInstance().player.sendSystemMessage(Component.literal("Key pressed!"));
+        }
+    }
+}
+```
+> [!IMPORTANT]
+> Обратите внимание, что события находятся в разных классах, т.к. *RegisterKeyMappingsEvent* использует шину **Mod.EventBusSubscriber.Bus.MOD**, которая указывается в аннотации:
+> ```java
+> @Mod.EventBusSubscriber(modid = Example.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+> ```
+> Другое же событие - *InputEvent.Key* - использует шину **Forge**, которая используется по умолчанию:
+> ```java
+> @Mod.EventBusSubscriber(modid = Example.MODID, value = Dist.CLIENT)
+> ```
