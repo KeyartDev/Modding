@@ -29,5 +29,15 @@
   "item.mod_id.strawberry_seeds": "Strawberry seeds",
   "item.mod_id.strawberry": "Strawberry",
 
-  "block.mod_id.seven_color_flower": "Seven-color flower"
+  "block.mod_id.seven_color_flower": "Seven-color flower",
+
+  "entity.minecraft.villager.mod_id.func_expert": "Functional blocks expert",
+
+  "sounds.mod_id.pip_sound": "Something piped",
+
+  "item.mod_id.kind_necro_disk": "Music disk",
+  "item.mod_id.kind_necro_disk.desc": "Marvel Ai Factory - Kind Necromancer",
+
+  "key.category.mod_id.example": "Example Category",
+  "key.mod_id.example": "Example"
 }

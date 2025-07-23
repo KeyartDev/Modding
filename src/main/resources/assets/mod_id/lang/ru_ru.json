@@ -29,5 +29,15 @@
   "item.mod_id.strawberry_seeds": "Семена клубники",
   "item.mod_id.strawberry": "Клубника",
 
-  "block.mod_id.seven_color_flower": "Семицвет"
+  "block.mod_id.seven_color_flower": "Семицвет",
+
+  "entity.minecraft.villager.mod_id.func_expert": "Эксперт функциональных блоков",
+
+  "sounds.mod_id.pip_sound": "Что-то пикнуло",
+
+  "item.mod_id.kind_necro_disk": "Музыкальная пластинка",
+  "item.mod_id.kind_necro_disk.desc": "Marvel Ai Factory - Добрый некромант",
+
+  "key.category.mod_id.example": "Категория",
+  "key.mod_id.example": "Пример"
 }

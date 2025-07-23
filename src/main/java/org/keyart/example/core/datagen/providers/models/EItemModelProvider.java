@@ -26,6 +26,7 @@ public class EItemModelProvider extends ItemModelProvider {
         basicItem(ItemRegistry.IT_ITEM.get());
         basicItem(ItemRegistry.STRAWBERRY_SEEDS.get());
         basicItem(ItemRegistry.STRAWBERRY.get());
+        basicItem(ItemRegistry.KIND_NECRO_DISK.get());
 
         handheldItem(ItemRegistry.NETHER_BRUSH);
 

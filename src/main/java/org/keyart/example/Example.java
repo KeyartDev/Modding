@@ -16,10 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.keyart.example.core.registry.BlockRegistry;
-import org.keyart.example.core.registry.CreativeTabRegistry;
-import org.keyart.example.core.registry.ItemRegistry;
-import org.keyart.example.core.registry.LootModifiersRegistry;
+import org.keyart.example.core.registry.*;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -38,10 +35,13 @@ public class Example {
         // Register the commonSetup method for modloading
 
 
+        SoundRegistry.register(modEventBus);
         ItemRegistry.register(modEventBus);
         BlockRegistry.register(modEventBus);
         CreativeTabRegistry.register(modEventBus);
         LootModifiersRegistry.register(modEventBus);
+        VillagerRegistry.register(modEventBus);
+
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

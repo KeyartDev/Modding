@@ -48,7 +48,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> SOME_SWORD =
             ITEMS.register("some_sword", () ->
-                    new SwordItem(EToolTiers.SOME, 4, 2.2f, new Item.Properties()));
+                    new SwordItem(EToolTiers.SOME, 4, -2.3f, new Item.Properties()));
 
     public static final RegistryObject<Item> SOME_SHOVEL =
             ITEMS.register("some_shovel", () ->
@@ -66,6 +66,7 @@ public class ItemRegistry {
             ITEMS.register("some_hoe", () ->
                     new HoeItem(EToolTiers.SOME, 1, 1.1f, new Item.Properties()));
 
+
     public static final RegistryObject<Item> STRAWBERRY_SEEDS =
             ITEMS.register("strawberry_seeds", () ->
                     new ItemNameBlockItem(BlockRegistry.STRAWBERRY_CROP.get(), new Item.Properties()));
@@ -77,6 +78,10 @@ public class ItemRegistry {
                                     .alwaysEat()
                                     .nutrition(1)
                                     .saturationMod(0.5f).build())));
+
+    public static final RegistryObject<Item> KIND_NECRO_DISK =
+            ITEMS.register("kind_necro_disk", () ->
+                    new RecordItem(6, SoundRegistry.KIND_NECRO, new Item.Properties().stacksTo(1), 3350));
 
 
 

@@ -48,6 +48,8 @@ public class CreativeTabRegistry {
                                 pOutput.accept(ItemRegistry.STRAWBERRY.get());
 
                                 pOutput.accept(BlockRegistry.SEVEN_COLOR.get());
+
+                                pOutput.accept(ItemRegistry.KIND_NECRO_DISK.get());
                             })).build());
 
     public static void register(IEventBus bus) {

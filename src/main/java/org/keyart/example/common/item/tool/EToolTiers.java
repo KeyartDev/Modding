@@ -15,7 +15,7 @@ import java.util.List;
 
 public class EToolTiers {
     public static final Tier SOME = TierSortingRegistry.registerTier(
-            new ForgeTier(5, 1500, 5f, 4f, 25,
+            new ForgeTier(5, 1500, 5f, 3f, 25,
                     CustomBlockTags.NEEDS_SOME_TOOL, () ->
                     Ingredient.of(ItemRegistry.SOME_BLOCK_FRAG.get())),
             ResourceLocation.fromNamespaceAndPath(Example.MODID, "some_frag"),

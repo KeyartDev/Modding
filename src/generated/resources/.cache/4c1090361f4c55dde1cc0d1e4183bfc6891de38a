@@ -1,6 +1,7 @@
-// 1.20.1	2025-07-22T13:45:36.0914733	Item Models: mod_id
+// 1.20.1	2025-07-23T17:06:32.1264623	Item Models: mod_id
 a0d3130876e35613cb778ce5379327456282b7f0 assets/mod_id/models/item/example_item.json
 ab2f65102f05eb76b9a0a627f6e671a5cc070154 assets/mod_id/models/item/it_item.json
+86f82e438c556b3edc19fdb76de252ea9169effd assets/mod_id/models/item/kind_necro_disk.json
 bad83476e000a16548febe4b575f03dd89788d48 assets/mod_id/models/item/mystic_clock.json
 55405a5de9e0181e5fb5bf54f47477f2512d1b2d assets/mod_id/models/item/nether_brush.json
 7058c01363d5680550548567a6830b41ac30fe45 assets/mod_id/models/item/seven_color_flower.json
