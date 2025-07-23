@@ -1,7 +1,14 @@
 # Подсказки
 ## Содержание
 - [Предмет](#предмет);
+  - [Стандартный предмет](#создание);
+  - [Создание предмета с 2D моделью в инвентаре и с 3D моделью в руке](#создание-предмета-с-2d-моделью-в-инвентаре-и-с-3d-моделью-в-рукекак-у-подзорной-трубы);
+  - [Инструменты](#инструменты);
+  - [Еда](#еда);
 - [Блок](#блок);
+  - [Стандартный блок](#создание-1);
+  - [Растения](#растенияурожай);
+  - [Цветок и цветок в горшке](#цветок-и-цветок-в-горшке);
 - [Теги](#теги):
 - [Генерация данных](#генерация-данных);
   - [Генерация моделей блоков/предметов](#генерация-моделей-блоковпредметов);
@@ -73,6 +80,53 @@
 А файл"*mod_id:magic_wand_3d*" - это файл, который мы получили из программы, где создали 3D модель.
 
 ***Вот и всё!***
+### Инструменты
+Для регистрации меча, кирки, лопаты, топора, мотыги используются соответсвующие классы: SwordItem, PickaxeItem, ShovelItem, AxeItem, HoeItem.  
+Первым параметром идёт **Tier** предмета(дерево, камень, золото, железо, алмаз, незерит). Также можно создать свой тир.  
+
+**Создание своего тира**  
+Для этого в отдельном классе необходимо создать константу типа Tier:
+```java
+public class EToolTiers {
+    public static final Tier SOME = TierSortingRegistry.registerTier(
+            new ForgeTier(5, 1500, 5f, 4f, 25,
+                    CustomBlockTags.NEEDS_SOME_TOOL, () ->
+                    Ingredient.of(ItemRegistry.SOME_BLOCK_FRAG.get())),
+            ResourceLocation.fromNamespaceAndPath(Example.MODID, "some_frag"),
+            List.of(Tiers.NETHERITE), List.of()
+    );
+}
+```
+- TierSortingRegistry - это класс-регистратор, который определяет свойства тира и его положение относительно других тиров;
+- registerTier() - непосредственно функция регистрирующая тир;
+  - ForgeTier - первый параметр, класс тиров;
+    1. Уровень(у незеритового - 4);
+    2. Использования(базовое значение);
+    3. Скорость(базовая скорость);
+    4. Бонус урона;
+    5. Значение зачарования(хз что это);
+    6. Тег для тира(нужно создать новый);
+    7. Ингредиент для починки.
+  - id тега;
+  - Список тиров перед нашим тиром;
+  - Список тиров после нашего тира(В нашем случае наш тир самый высокий).
+  
+**Генерация моделей**  
+Ничего особенного, просто handheldItem().
+
+Теперь если мы захотим, чтобы блок добывался нашей новой киркой, нужно будет просто добавить соответсвующий тег.
+### Еда
+Создание еды отличается только регистрацией предмета:
+```java
+public static final RegistryObject<Item> STRAWBERRY =
+            ITEMS.register("strawberry", () ->
+                    new Item(new Item.Properties()
+                            .food(new FoodProperties.Builder()
+                                    .alwaysEat()
+                                    .nutrition(1)
+                                    .saturationMod(0.5f).build())));
+```
+В свойствах просто нужно указать, что это еда с помощью *.food()* и в свойствах указать необходимые данные. 
 ## Блок
 ### Создание
 - Добавить класс-регистратор и зарегестрировать его в основном классе мода;
@@ -140,6 +194,160 @@
 - randomTicks();
 - replacable();
 - speedFactor(float).
+### Растения(урожай)
+Для начала создадим отдельный класс, наследуемый от **CropBlock** и перегрузим методы getBaseSeedId, getAgeProperty, getMaxAge, createBlockStateDefinition:
+```java
+public class StrawberryCropBlock extends CropBlock {
+    public static final int MAX_AGE = 5;
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
+
+    public StrawberryCropBlock(Properties pProperties) {
+        super(pProperties);
+    }
+
+    @Override
+    protected ItemLike getBaseSeedId() {
+        return ItemRegistry.STRAWBERRY_SEEDS.get();
+    }
+
+    @Override
+    public IntegerProperty getAgeProperty() {
+        return AGE;
+    }
+
+    @Override
+    public int getMaxAge() {
+        return MAX_AGE;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(AGE);
+    }
+}
+```  
+- MAX_AGE - это константа, показывающая максимальный возраст(стадию роста) растения;
+- AGE - это ***свойство***, также показывающее максимальный возраст.  
+В чём разница? Всё дело в том, что в мире может существовать множесто блоков этого типа, но с разными стадиями, а MAX_AGE - это константа. В отличии от неё, AGE - это ***свойство**, которое мы добавляем растению с помощью перегруженного метода createBlockStateDifinition(). Что позволит отслеживать стадию роста для изменения текстуры модели в зависимости от стадии.
+
+**Регистрация**  
+Тут ничего сложного:
+```java
+public static final RegistryObject<Block> STRAWBERRY_CROP =
+            BLOCKS.register("strawberry_crop", () ->
+                    new StrawberryCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
+```
+> [!IMPORTANT]
+> В свойствах нашего растения обязательно должно быть noCollision() и noOcclusion()!
+
+**Выпадение урожая**  
+Тут всё немного сложней:
+```java
+LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(BlockRegistry.STRAWBERRY_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StrawberryCropBlock.AGE, 5));
+
+add(BlockRegistry.STRAWBERRY_CROP.get(),
+                createCropDrops(BlockRegistry.STRAWBERRY_CROP.get(), ItemRegistry.STRAWBERRY.get(), ItemRegistry.STRAWBERRY_SEEDS.get(), lootitemcondition$builder));
+```
+Билдер лут-таблицы createCropDrops() в качестве последнего параметра принимает *билдер условия лут-таблиц*. В нашем примере мы создали **lootitemcondition$builder**. В нём мы проверяем достигло ли растение последней сталии роста.  
+В качестве урожая мы испоьзовали предмет *клубника*.
+
+**Регистрация семян**  
+Тут зарегестрировать предмет, образованный от ItemNameBlockItem:
+```java
+public static final RegistryObject<Item> STRAWBERRY_SEEDS =
+            ITEMS.register("strawberry_seeds", () ->
+                    new ItemNameBlockItem(BlockRegistry.STRAWBERRY_CROP.get(), new Item.Properties()));
+```
+
+**Образование модели и состояний растения**  
+Для этого пришлось создать дополнительные методы:
+```java
+private void makeStrawberryCrop(CropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> strawberryStates(state, block, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
+}
+
+private ConfiguredModel[] strawberryStates(BlockState state, CropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((StrawberryCropBlock) block).getAgeProperty()),
+                ResourceLocation.fromNamespaceAndPath(Example.MODID, "block/" + textureName + state.getValue(((StrawberryCropBlock) block).getAgeProperty()))).renderType("cutout"));
+
+        return models;
+}
+```
+Что эти методы делают:
+- strawberryStates(): принимает стадию роста растения, блок растения, название модели и текстуры, и на их основе возвращает объект **ConfiguredModel**, который содержит в себе модель заданного состояния. В конце названия текстуры состояние должен стоять номер состояния без пробелов и подчёркиваний(Нумирация начинается с 0!).
+- makeStrawberryCrop(): с помощью встроенной в класс BlockStateProvider функции getVariantBuilder(), формирует json файл модели со всеми состояниями(стадиями роста) растения, перебирая каждое и применяя к нему функцию strawberryStates().
+> [!NOTE]
+> Тип рендера для текстуры мы используем "*cutout*", т.к. в ней обязательно будет присутствовать альфа-канал(Прозрачность).
+
+Что касается модели предмета, то там достаточно использовать basicItem(). Осталось запустить **runData()**!
+### Цветок и цветок в горшке
+В названии не зря указаны и цветок, и цветок в горшке. ведь с точки зрения майнкрафта, это 2 разных блока, поэтому и регистрировать придётся 2 блока:
+```java
+public static final RegistryObject<Block> SEVEN_COLOR =
+            registerBlock("seven_color_flower", () ->
+                    new FlowerBlock(() -> MobEffects.LUCK, 5,
+                            BlockBehaviour.Properties.copy(Blocks.ALLIUM)
+                                    .noCollission()
+                                    .noOcclusion())
+            );
+
+public static final RegistryObject<Block> SEVEN_COLOR_POTTED =
+            BLOCKS.register("potted_seven_color_flower", () ->
+                    new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), BlockRegistry.SEVEN_COLOR,
+                            BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM)
+                                    .noOcclusion())
+            );
+```
+В регистрации может смутить 1-й параметр регистрации цветка - эффект. Это значение используется при приготовлении *подозрительного рагу*.
+> [!IMPORTANT]
+> Обратите внимание, что в первом случае мы используем *registerBlock()*, а во втором - *BLOCKS.register()*, а также, что во втором мы не используем *noCollision()*. Это важно!
+
+**Дроп из цветка и цветка в горшке**  
+Здесь всё просто. Цветок дропает самого себя, а для цыетка в горшке есть отдельный билдер с 1 параметром:
+```java
+dropSelf(BlockRegistry.SEVEN_COLOR.get());
+add(BlockRegistry.SEVEN_COLOR_POTTED.get(), createPotFlowerItemTable(BlockRegistry.SEVEN_COLOR.get()));
+```
+
+**Модель цветка и цветка в горшке**  
+Тут всё чуть-чуть сложнее, чем с обычным блоком:
+```java
+simpleBlockWithItem(BlockRegistry.SEVEN_COLOR.get(), models().cross(blockTexture(BlockRegistry.SEVEN_COLOR.get()).getPath(),
+                blockTexture(BlockRegistry.SEVEN_COLOR.get())).renderType("cutout"));
+simpleBlockWithItem(BlockRegistry.SEVEN_COLOR_POTTED.get(), models().singleTexture("potted_seven_color_flower", ResourceLocation.parse("flower_pot_cross"), "plant",
+                blockTexture(BlockRegistry.SEVEN_COLOR.get())).renderType("cutout"));
+```
+В первом случае мы используем тип модели *cross()*, что значит крест-накрест, а во втором случае *singleTexture()*, где в качестве родителя мы указываем "*flower_pot_cross*".  
+> [!NOTE]
+> Тип рендера для текстуры мы используем "*cutout*", т.к. в ней обязательно будет присутствовать альфа-канал(Прозрачность).
+
+**Модель предмета цветка**  
+Для него мы будем брать текстуру не из "**item/", а из "*block/*", поэтому создадим новый метод для таких случаев:
+```java
+private ItemModelBuilder simpleBlockItemBlockTexture(RegistryObject<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(Example.MODID, "block/" + item.getId().getPath()));
+}
+```
+
+**Последние штрихи**  
+Чтобы при нажатии ПКМ по цветочному горшку цветок помещался в него, нужно сделать одну необычную вещь в главном классе. Для начала нужно проверить есть ли у вас эта строчка в конструкторе класса:
+```java
+modEventBus.addListener(this::commonSetup);
+```
+А затем добавить следующий код в commonSetup():
+```java
+event.enqueueWork(() -> {
+           ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BlockRegistry.SEVEN_COLOR.getId(), BlockRegistry.SEVEN_COLOR_POTTED);
+});
+```
+Таким образом мы сообщаем, что наш цветок предназначен для посадки в цветочный горшок. Осталось только запустить *runData()*!
 ## Теги
 ### Что это?
   Теги - это система группировки игровых объектов (блоков, предметов, сущностей) по логическим категориям.
@@ -605,6 +813,7 @@ new LootItemCondition[] {
 - MatchTool - определённый инструмент
 - WeatherCheck - проверка погоды
 - TimeCheck - проверка времени
-### Интеграция в GatherDataEvent:
+
+**Интеграция в GatherDataEvent**   
 Ничего особенного. Это серверные данные!  
 Осталось только запустить **runData**.
