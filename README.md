@@ -1239,7 +1239,7 @@ public static void registerCommands(RegisterCommandsEvent event) {
 }
 ```
 ## GUI(оверлей)
-[Ссылка на код GUI на примере жажды](src/main/java/org/keyart/example/common/client/ThurstHudOverlay.java)
+[Ссылка на код GUI на примере жажды](src/main/java/org/keyart/example/common/client/ThirstHudOverlay.java)
 
 Для регистрации используется событие *RegisterGuiOverlayEvent*:
 ```java
