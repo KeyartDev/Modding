@@ -1,8 +1,10 @@
 package org.keyart.example.core.events;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.client.telemetry.TelemetryProperty;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -111,7 +113,7 @@ public class EModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.side == LogicalSide.SERVER) {
             event.player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
-                if (thirst.getThirst() > 0 && event.player.tickCount % 200 == 0 && event.phase == TickEvent.Phase.END) {
+                if (thirst.getThirst() > 0 && event.player.tickCount % 200 == 0 && event.phase == TickEvent.Phase.END && ((ServerPlayer) event.player).gameMode.isSurvival()) {
                     thirst.subThirst(1);
                     ENetworks.sendToPlayer(new ThirstDataSyncS2CPacket(thirst.getThirst()), ((ServerPlayer) event.player));
                 }

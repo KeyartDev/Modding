@@ -1,6 +1,7 @@
 package org.keyart.example.common.item;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -8,6 +9,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -34,12 +36,12 @@ public class InteractTestsItem extends Item {
         Vec3 pos = pPlayer.position();
         double RADIUS = 1.5;
 
-        if (CooldownUtils.isOnCooldown(stack.getItem()))
+        if (CooldownUtils.isOnCooldown(pPlayer, stack.getItem()))
             return InteractionResultHolder.fail(stack);
 
         if (!pLevel.isClientSide) {
             pPlayer.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200, 0, true,true));
-            CooldownUtils.addCooldown(stack.getItem(), 600);
+            CooldownUtils.addCooldown(pPlayer, stack.getItem(), 600);
         } else {
             for (double x = 0; x < 360*3; x++) {
                 double oneX = RADIUS * Math.cos(Math.toRadians(x));
@@ -68,7 +70,7 @@ public class InteractTestsItem extends Item {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
 
         pTooltipComponents.add(Component.literal("Предмет для тестирования функций взаимодействия с миром/сущностями/игроком.").withStyle(ChatFormatting.GRAY));
-        pTooltipComponents.add(Component.translatable("item.mod_id.it_item.desc",  CooldownUtils.getCooldownInSeconds(this.asItem()))
+        pTooltipComponents.add(Component.translatable("item.mod_id.it_item.desc",  CooldownUtils.getCooldownInSeconds(Minecraft.getInstance().player, this.asItem()))
                 .withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.UNDERLINE)
         );
     }

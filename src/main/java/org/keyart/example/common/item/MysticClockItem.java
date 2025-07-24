@@ -71,7 +71,7 @@ public class MysticClockItem extends Item {
 
         pTooltipComponents.add(Component.literal("Последний наложенный эффект: ").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.UNDERLINE));
         if (lastEffect != null) {
-            addBaseEffectInfo(lastEffect, pTooltipComponents);
+            addBaseEffectInfo(lastEffect, pTooltipComponents); // TODO: Убрать отображаемое время
         } else {
             pTooltipComponents.add(Component.literal("Нет").withStyle(ChatFormatting.GRAY));
         }
