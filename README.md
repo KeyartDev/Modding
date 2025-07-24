@@ -22,7 +22,11 @@
 - [Звуки](#звуки):
   - [Добавление звука](#добавление-звука);
   - [Добавление музыкальной пластинки](#добавление-музыкальной-пластинки).
-- [Привязка клавиш](#привязка-клавиш).
+- [Привязка клавиш](#привязка-клавиш);
+- [Передача данных между клиентом и сервером](#передача-данных-между-клиентом-и-сервером);
+- [Добавление свойств игроку](#добавление-свойств-игроку);
+- [Команда](#команда);
+- [GUI(Оверлей)](#guiоверлей).
 ## Предмет
 ### Создание
 - Добавить класс-регистратор и зарегестрировать его в основном классе мода;
@@ -1006,3 +1010,241 @@ public class EClientEvents {
 > ```java
 > @Mod.EventBusSubscriber(modid = Example.MODID, value = Dist.CLIENT)
 > ```
+## Передача данных между клиентом и сервером
+Этого можно достигнуть путём использования **пакетов**. Создадим класс:
+```java ENetworks.java
+public class ENetworks {
+    private static SimpleChannel INSTANCE;
+
+    private static int packetId = 0;
+    private static int id() {
+        return packetId++;
+    }
+
+    public static void register() {
+        SimpleChannel net = NetworkRegistry.ChannelBuilder
+                .named(ResourceLocation.fromNamespaceAndPath(Example.MODID, "messages"))
+                .clientAcceptedVersions(t -> true)
+                .serverAcceptedVersions(t -> true)
+                .networkProtocolVersion(() -> "1.0")
+                .simpleChannel();
+
+        INSTANCE = net;
+
+        net.messageBuilder(ExampleC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)  //Регистрация пакета
+                .decoder(ExampleC2SPacket::new)
+                .encoder(ExampleC2SPacket::toBytes)
+                .consumerMainThread(ExampleC2SPacket::handle)
+                .add();
+    }
+
+    public static <MSG> void sendToServer(MSG msg) {
+        INSTANCE.sendToServer(msg);
+    }
+
+    public static <MSG> void sendToPlayer(MSG msg, ServerPlayer player) {
+        INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), msg);
+    }
+}
+```
+Класс пакета:
+```java
+public class ExampleC2SPacket {
+    public ExampleC2SPacket() {
+
+    }
+
+    public ExampleC2SPacket(FriendlyByteBuf buf) {
+
+    }
+
+    public void toBytes(FriendlyByteBuf buf) {
+
+    }
+
+    public boolean handle(Supplier<NetworkEvent.Context> supplier) {
+        NetworkEvent.Context context = supplier.get();
+        context.enqueueWork(() -> {
+            // ЗДЕСЬ СЕРВЕР!!!
+        });
+
+        return true;
+    }
+}
+```
+> [!TIP]
+> Всё, что находится в пометке "**ЗДЕСЬ СЕРВЕР!!!**", будет выполняться на стороне *сервера*!  
+Теперь, чтобы передать пакет на сервер, достаточно написать:
+```java 
+ENetworks.sendToServer(new ExampleC2SPacket());
+```
+## Добавление свойств игроку
+Для этого понадобится класс свойтсва и провайдер для него.  
+Класс свойства(На примере системы жажды):
+```java
+public class PlayerThirst {
+    private int thirst;
+    private final int MIN_THIRST = 0;
+    private final int MAX_THIRST = 10;
+
+    public int getThirst() {
+        return thirst;
+    }
+
+    public void addThirst(int add) {
+        thirst = Math.min(thirst + add, MAX_THIRST);
+    }
+
+    public void subThirst(int sub) {
+        thirst = Math.max(thirst - sub, MIN_THIRST);
+    }
+
+    public void copyFrom(PlayerThirst source) {
+        this.thirst = source.thirst;
+    }
+
+    public void saveNBTData(CompoundTag nbt) {
+        nbt.putInt("thirst", thirst);
+    }
+
+    public void loadNBTData(CompoundTag nbt) {
+        thirst = nbt.getInt("thirst");
+    }
+
+    public void setThirst(int set) {
+        if (set > MAX_THIRST)
+            thirst = MAX_THIRST;
+        else if (set < MIN_THIRST) {
+            thirst = MIN_THIRST;
+        } else {
+            thirst = set;
+        }
+    }
+}
+```
+Класс провайдера:
+```java
+public class PlayerThirstProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+    public static Capability<PlayerThirst> PLAYER_THIRST = CapabilityManager.get(new CapabilityToken<PlayerThirst>() { });
+
+    private PlayerThirst thirst = null;
+    private final LazyOptional<PlayerThirst> optional = LazyOptional.of(this::createPlayerThirst);
+
+    private @NotNull PlayerThirst createPlayerThirst() {
+        if (this.thirst == null)
+            this.thirst = new PlayerThirst();
+
+        return this.thirst;
+    }
+
+
+    @Override
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == PLAYER_THIRST)
+            return optional.cast();
+
+        return LazyOptional.empty();
+    }
+
+    @Override
+    public CompoundTag serializeNBT() {
+        CompoundTag nbt = new CompoundTag();
+        createPlayerThirst().saveNBTData(nbt);
+
+        return nbt;
+    }
+
+    @Override
+    public void deserializeNBT(CompoundTag nbt) {
+        createPlayerThirst().loadNBTData(nbt);
+    }
+}
+```
+Регистрация свойства происходит в перехватчике событий на стороне сервера с шиной Forge:
+```java
+@SubscribeEvent
+public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
+        if (event.getObject() instanceof Player player) {
+            if (!event.getObject().getCapability(PlayerThirstProvider.PLAYER_THIRST).isPresent()) {
+                event.addCapability(ResourceLocation.fromNamespaceAndPath(Example.MODID, "properties"), new PlayerThirstProvider());
+            }
+        }
+}
+
+@SubscribeEvent
+public static void onPlayerCloned(PlayerEvent.Clone event) {
+        if (event.isWasDeath()) {
+            event.getOriginal().reviveCaps();
+            event.getOriginal().getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(oldStore -> {
+                event.getEntity().getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(newStore -> {
+                    newStore.copyFrom(oldStore);
+                });
+            });
+        }
+        event.getOriginal().invalidateCaps();
+}
+
+@SubscribeEvent
+public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(PlayerThirst.class);
+}
+```
+- onAttachCapabilitiesPlayer() - добавляет свойство игроку;
+- onPlayerCloned() - обновляет свойства игрока при смерти;
+- onRegisterCapabilities() - регистрирует свойтсво.
+## Команда
+Для добавления команды создаётся отдельный класс:
+```java
+public class ThirstCommand {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(Commands.literal("thirst").requires(sender -> sender.hasPermission(0))
+                .then(Commands.literal("get").executes(commandContext -> {
+                    ServerPlayer player = commandContext.getSource().getPlayerOrException();
+                    player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
+                        player.sendSystemMessage(Component.literal("Ваша жажда: " + thirst.getThirst()).withStyle(ChatFormatting.DARK_AQUA));
+                    });
+
+                    return Command.SINGLE_SUCCESS;
+                }))
+                .then(Commands.literal("set")
+                        .then(Commands.argument("target", EntityArgument.player())
+                                .then(Commands.argument("count", IntegerArgumentType.integer(0, 10))
+                                        .executes(commandContext -> {
+                                            ServerPlayer player = EntityArgument.getPlayer(commandContext, "target");
+                                            int count = IntegerArgumentType.getInteger(commandContext, "count");
+
+                                            player.getCapability(PlayerThirstProvider.PLAYER_THIRST).ifPresent(thirst -> {
+                                                thirst.setThirst(count);
+                                                ENetworks.sendToPlayer(new ThirstDataSyncS2CPacket(thirst.getThirst()), player);
+                                            });
+
+                                            player.sendSystemMessage(Component.literal("Ваша жажда установлена на " + count + "!")
+                                                    .withStyle(ChatFormatting.DARK_AQUA));
+
+
+
+                                            return Command.SINGLE_SUCCESS;
+                                        })
+                                )
+                        )
+                ));
+    }
+}
+```
+Регистрация команды происходит в перехватчике событий на стороне сервера:
+```java
+@SubscribeEvent
+public static void registerCommands(RegisterCommandsEvent event) {
+        ThirstCommand.register(event.getDispatcher());
+}
+```
+## GUI(оверлей)
+[Ссылка на код GUI на примере жажды](src/main/java/org/keyart/example/common/client/ThirstHudOverlay.java)
+
+Для регистрации используется событие *RegisterGuiOverlayEvent*:
+```java
+@SubscribeEvent
+public static void registerHUD(RegisterGuiOverlaysEvent event) {
+            event.registerAboveAll("thirst", ThirstHudOverlay.HUD_THIRST);
+}
+```
