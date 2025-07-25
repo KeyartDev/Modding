@@ -2,6 +2,7 @@ package org.keyart.example;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.NetherPortalBlock;
@@ -17,6 +18,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.keyart.example.common.entity.client.AnkiRenderer;
 import org.keyart.example.core.network.ENetworks;
 import org.keyart.example.core.registry.*;
 import org.slf4j.Logger;
@@ -43,6 +45,7 @@ public class Example {
         CreativeTabRegistry.register(modEventBus);
         LootModifiersRegistry.register(modEventBus);
         VillagerRegistry.register(modEventBus);
+        EntityRegistry.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in
@@ -84,9 +87,7 @@ public class Example {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            EntityRenderers.register(EntityRegistry.ANKI.get(), AnkiRenderer::new);
         }
     }
 }

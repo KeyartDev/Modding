@@ -1,6 +1,7 @@
 package org.keyart.example.core.events;
 
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
@@ -8,6 +9,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.keyart.example.Example;
 import org.keyart.example.common.client.ThirstHudOverlay;
+import org.keyart.example.common.entity.client.AnkiModel;
+import org.keyart.example.common.entity.client.EModelLayers;
 import org.keyart.example.common.key.KeyBinding;
 import org.keyart.example.core.network.ENetworks;
 import org.keyart.example.core.network.packets.DrinkWaterC2SPacket;
@@ -35,6 +38,11 @@ public class EClientEvents {
         public static void registerHUD(RegisterGuiOverlaysEvent event) {
             event.registerAboveAll("thirst",
                     ThirstHudOverlay.HUD_THIRST);
+        }
+
+        @SubscribeEvent
+        public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+            event.registerLayerDefinition(EModelLayers.ANKI_LAYER, AnkiModel::createBodyLayer);
         }
     }
 }

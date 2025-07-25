@@ -5,6 +5,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -83,6 +84,9 @@ public class ItemRegistry {
             ITEMS.register("kind_necro_disk", () ->
                     new RecordItem(6, SoundRegistry.KIND_NECRO, new Item.Properties().stacksTo(1), 3350));
 
+
+    public static final RegistryObject<Item> ANKI_SPAWN_EGG =
+            ITEMS.register("anki_spawn_egg", () -> new ForgeSpawnEggItem(EntityRegistry.ANKI, 1, 1, new Item.Properties()));
 
 
     public static void register(IEventBus bus) {
