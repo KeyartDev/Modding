@@ -12,6 +12,7 @@ import java.util.function.Supplier;
 @Mod.EventBusSubscriber(modid = Example.MODID)
 public class ExecuteDelayed {
     private static ArrayList<DelayedTask> tasks = new ArrayList<>();
+
     @SubscribeEvent
     public static void tick(TickEvent.ServerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
@@ -31,7 +32,6 @@ public class ExecuteDelayed {
     public static void clearTasks() {
         tasks.clear();
     }
-
 
     public static class DelayedTask {
         private int delay;
