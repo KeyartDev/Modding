@@ -1,12 +1,9 @@
 package org.keyart.example;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.NetherPortalBlock;
-import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -18,7 +15,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.keyart.example.common.entity.client.AnkiRenderer;
+import org.keyart.example.common.entity.renderer.AnkiRenderer;
 import org.keyart.example.core.network.ENetworks;
 import org.keyart.example.core.registry.*;
 import org.slf4j.Logger;

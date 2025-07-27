@@ -14,8 +14,8 @@ public class EntityRegistry {
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Example.MODID);
 
     public static final RegistryObject<EntityType<AnkiEntity>> ANKI =
-            ENTITY_TYPES.register("anki", () -> EntityType.Builder.of(AnkiEntity::new, MobCategory.CREATURE)
-                    .sized(1, 1.8f).build("anki"));
+            ENTITY_TYPES.register("anki", () ->
+                    EntityType.Builder.of(AnkiEntity::new, MobCategory.CREATURE).sized(1, 1.5f).build("anki"));
 
     public static void register(IEventBus bus) {
         ENTITY_TYPES.register(bus);

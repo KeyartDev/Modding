@@ -39,5 +39,8 @@
   "item.mod_id.kind_necro_disk.desc": "Marvel Ai Factory - Добрый некромант",
 
   "key.category.mod_id.example": "Категория",
-  "key.mod_id.example": "Пример"
+  "key.mod_id.example": "Пример",
+
+  "entity.mod_id.anki": "Анки",
+  "item.mod_id.anki_spawn_egg": "Яйцо спавна Анки"
 }

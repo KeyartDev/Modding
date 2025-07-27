@@ -50,8 +50,6 @@ public class CreativeTabRegistry {
                                 pOutput.accept(BlockRegistry.SEVEN_COLOR.get());
 
                                 pOutput.accept(ItemRegistry.KIND_NECRO_DISK.get());
-
-                                pOutput.accept(ItemRegistry.ANKI_SPAWN_EGG.get());
                             })).build());
 
     public static void register(IEventBus bus) {

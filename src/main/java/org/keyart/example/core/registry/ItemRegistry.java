@@ -86,8 +86,7 @@ public class ItemRegistry {
 
 
     public static final RegistryObject<Item> ANKI_SPAWN_EGG =
-            ITEMS.register("anki_spawn_egg", () -> new ForgeSpawnEggItem(EntityRegistry.ANKI, 1, 1, new Item.Properties()));
-
+            ITEMS.register("anki_spawn_egg", () -> new ForgeSpawnEggItem(EntityRegistry.ANKI, 0x23F3F3, 0x51A9F6, new Item.Properties()));
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);

@@ -45,6 +45,7 @@ public class EItemModelProvider extends ItemModelProvider {
         handheldItem(ItemRegistry.SOME_SHOVEL);
         handheldItem(ItemRegistry.SOME_HOE);
 
+
         simpleBlockItemBlockTexture(BlockRegistry.SEVEN_COLOR);
 
         withExistingParent(ItemRegistry.ANKI_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));

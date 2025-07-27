@@ -39,5 +39,8 @@
   "item.mod_id.kind_necro_disk.desc": "Marvel Ai Factory - Kind Necromancer",
 
   "key.category.mod_id.example": "Example Category",
-  "key.mod_id.example": "Example"
+  "key.mod_id.example": "Example",
+
+  "entity.mod_id.anki": "Anki",
+  "item.mod_id.anki_spawn_egg": "Anki spawn egg"
 }
