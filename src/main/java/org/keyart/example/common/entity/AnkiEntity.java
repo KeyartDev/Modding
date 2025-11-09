@@ -31,6 +31,7 @@ public class AnkiEntity extends PathfinderMob implements GeoEntity {
         super(pEntityType, pLevel);
     }
 
+
     @Override
     public boolean doHurtTarget(Entity pEntity) {
         triggerAnim("attack_controller", "attack");

@@ -37,6 +37,15 @@ public class ERecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ItemRegistry.SOME_BLOCK_FRAG.get()), has(ItemRegistry.SOME_BLOCK_FRAG.get()))
                 .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(BlockRegistry.SOME_BLOCK.get())));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockRegistry.SOME_PEDISTAL_BLOCK.get(), 1)
+                .pattern(" e ")
+                .pattern(" s ")
+                .pattern(" s ")
+                .define('e', ItemRegistry.EXAMPLE_ITEM.get())
+                .define('s', BlockRegistry.SOME_BLOCK.get())
+                .unlockedBy(getHasName(BlockRegistry.SOME_BLOCK.get()), has(BlockRegistry.SOME_BLOCK.get()))
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(BlockRegistry.SOME_PEDISTAL_BLOCK.get())));
+
 
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.SOME_BLOCK_FRAG.get(), 9)

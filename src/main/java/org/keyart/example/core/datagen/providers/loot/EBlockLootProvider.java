@@ -38,6 +38,7 @@ public class EBlockLootProvider extends BlockLootSubProvider {
         dropSelf(BlockRegistry.SOME_BUTTON.get());
         dropSelf(BlockRegistry.SOME_PRESSURE_PLATE.get());
         dropSelf(BlockRegistry.SOME_STAIRS.get());
+        dropSelf(BlockRegistry.SOME_PEDISTAL_BLOCK.get());
 
         add(BlockRegistry.SOME_SLAB.get(),
                 block -> createSlabItemTable(BlockRegistry.SOME_SLAB.get()));

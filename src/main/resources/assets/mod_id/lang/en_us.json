@@ -42,5 +42,7 @@
   "key.mod_id.example": "Example",
 
   "entity.mod_id.anki": "Anki",
-  "item.mod_id.anki_spawn_egg": "Anki spawn egg"
+  "item.mod_id.anki_spawn_egg": "Anki spawn egg",
+
+  "block.mod_id.some_pedistal_block": "Some pedistal block"
 }

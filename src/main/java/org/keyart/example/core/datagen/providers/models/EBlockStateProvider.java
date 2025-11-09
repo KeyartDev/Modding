@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import org.keyart.example.Example;
@@ -24,6 +25,11 @@ public class EBlockStateProvider extends BlockStateProvider {
         blockWithItem(BlockRegistry.SOME_BLOCK);
         blockWithItem(BlockRegistry.FUNC_BLOCK);
         blockWithItem(BlockRegistry.SOME_BLOCK_ORE);
+
+
+        simpleBlockWithItem(BlockRegistry.SOME_PEDISTAL_BLOCK.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/some_pedistal_block")));
+
 
         stairsBlock(((StairBlock) BlockRegistry.SOME_STAIRS.get()), blockTexture(BlockRegistry.SOME_BLOCK.get()));
         slabBlock(((SlabBlock) BlockRegistry.SOME_SLAB.get()), blockTexture(BlockRegistry.SOME_BLOCK.get()), blockTexture(BlockRegistry.SOME_BLOCK.get()));

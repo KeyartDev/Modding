@@ -15,6 +15,7 @@ import org.keyart.example.Example;
 import org.keyart.example.common.block.FuncBlock;
 import org.keyart.example.common.block.SomeBlock;
 import org.keyart.example.common.block.crop.StrawberryCropBlock;
+import org.keyart.example.common.block.custom.SomePedistalBlock;
 import org.keyart.example.common.block.ore.SomeBlockOre;
 
 import java.util.function.Supplier;
@@ -88,7 +89,9 @@ public class BlockRegistry {
                                     .noOcclusion())
             );
 
-
+    public static final RegistryObject<Block> SOME_PEDISTAL_BLOCK =
+            registerBlock("some_pedistal_block", () ->
+                    new SomePedistalBlock(BlockBehaviour.Properties.copy(SOME_BLOCK.get()).noOcclusion()));
 
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

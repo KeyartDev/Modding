@@ -42,5 +42,7 @@
   "key.mod_id.example": "Пример",
 
   "entity.mod_id.anki": "Анки",
-  "item.mod_id.anki_spawn_egg": "Яйцо спавна Анки"
+  "item.mod_id.anki_spawn_egg": "Яйцо спавна Анки",
+
+  "block.mod_id.some_pedistal_block": "Блочный пьедистал"
 }

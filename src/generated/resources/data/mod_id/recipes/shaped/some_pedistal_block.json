@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "e": {
+      "item": "mod_id:example_item"
+    },
+    "s": {
+      "item": "mod_id:some_block"
+    }
+  },
+  "pattern": [
+    " e ",
+    " s ",
+    " s "
+  ],
+  "result": {
+    "item": "mod_id:some_pedistal_block"
+  },
+  "show_notification": true
+}

@@ -50,6 +50,8 @@ public class CreativeTabRegistry {
                                 pOutput.accept(BlockRegistry.SEVEN_COLOR.get());
 
                                 pOutput.accept(ItemRegistry.KIND_NECRO_DISK.get());
+
+                                pOutput.accept(BlockRegistry.SOME_PEDISTAL_BLOCK.get());
                             })).build());
 
     public static void register(IEventBus bus) {

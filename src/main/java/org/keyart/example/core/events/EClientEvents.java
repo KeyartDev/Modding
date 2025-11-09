@@ -8,6 +8,7 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.keyart.example.Example;
+import org.keyart.example.common.client.IndicatorHudOverlay;
 import org.keyart.example.common.client.ThirstHudOverlay;
 import org.keyart.example.common.key.KeyBinding;
 import org.keyart.example.core.network.ENetworks;
@@ -36,11 +37,16 @@ public class EClientEvents {
         public static void registerHUD(RegisterGuiOverlaysEvent event) {
             event.registerAboveAll("thirst",
                     ThirstHudOverlay.HUD_THIRST);
+
+            event.registerAboveAll("misc",
+                    IndicatorHudOverlay.MISC_HUD);
         }
 
         @SubscribeEvent
         public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
 
         }
+
+
     }
 }

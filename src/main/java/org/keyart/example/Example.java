@@ -1,6 +1,7 @@
 package org.keyart.example;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -15,9 +16,12 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.keyart.example.common.block.entity.ModBlockEntities;
 import org.keyart.example.common.entity.renderer.AnkiRenderer;
 import org.keyart.example.core.network.ENetworks;
 import org.keyart.example.core.registry.*;
+import org.keyart.example.core.screen.ModMenuTypes;
+import org.keyart.example.core.screen.SomePedistalBlockScreen;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -43,6 +47,8 @@ public class Example {
         LootModifiersRegistry.register(modEventBus);
         VillagerRegistry.register(modEventBus);
         EntityRegistry.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in
@@ -85,6 +91,8 @@ public class Example {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(EntityRegistry.ANKI.get(), AnkiRenderer::new);
+
+            MenuScreens.register(ModMenuTypes.SOME_PEDISTAL_BLOCK_MENU.get(), SomePedistalBlockScreen::new);
         }
     }
 }

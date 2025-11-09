@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-22T13:45:36.0879506	Block States: mod_id
+// 1.20.1	2025-11-09T13:53:13.0536864	Block States: mod_id
 076c763478132a7cee14bfa0ae7f808fd7705c06 assets/mod_id/blockstates/func_block.json
 c0d85876668d20d41dc926b310ce48ea330cb8e2 assets/mod_id/blockstates/potted_seven_color_flower.json
 cc8aaf63f11eb348fcc20d053a79b13db975182d assets/mod_id/blockstates/seven_color_flower.json
@@ -7,6 +7,7 @@ cc8aaf63f11eb348fcc20d053a79b13db975182d assets/mod_id/blockstates/seven_color_f
 ea5a57bb06b2c8941296c692a9618dd0f9712a8f assets/mod_id/blockstates/some_button.json
 86b1bcdeb36dccf7290f86a1345df7bbc34b48c2 assets/mod_id/blockstates/some_fence.json
 9f5a3f5b574a726d5a091ec053c087b070d1753d assets/mod_id/blockstates/some_fence_gate.json
+87707b64c09f8eda61024c0b19c6c994d2511d3e assets/mod_id/blockstates/some_pedistal_block.json
 377599e9bc73c2d5d68fc59714f263753256ae5c assets/mod_id/blockstates/some_pressure_plate.json
 1980594e00448d9defcb503731c7595e6eb7167a assets/mod_id/blockstates/some_slab.json
 fe0c753bf40af1f211bb757e6705b31fbfb7bcbd assets/mod_id/blockstates/some_stairs.json
@@ -46,3 +47,4 @@ ba4c021979b17fbbe78a2d9e6c734e73c299d76e assets/mod_id/models/block/strawberry_s
 0cb93bdb8ebdfe4ee6918ed9d6053a2a221971fa assets/mod_id/models/item/seven_color_flower.json
 a6b60786dd7ef095005361f7398eadacb6d9c110 assets/mod_id/models/item/some_block.json
 550fbb1adf442337401554270883994e51af769a assets/mod_id/models/item/some_block_ore.json
+fd317c1aaf994c73bd68396c2610d88d2665c25b assets/mod_id/models/item/some_pedistal_block.json

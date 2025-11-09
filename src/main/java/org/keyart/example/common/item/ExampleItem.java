@@ -21,7 +21,7 @@ public class ExampleItem extends Item {
 
     public ExampleItem() {
         super(new Properties()
-                .stacksTo(1)
+                .stacksTo(64)
                 .rarity(Rarity.RARE)
                 .fireResistant());
     }
