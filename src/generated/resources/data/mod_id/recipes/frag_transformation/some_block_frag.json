@@ -1,0 +1,12 @@
+{
+  "type": "mod_id:frag_transforming",
+  "ingredients": [
+    {
+      "item": "mod_id:some_block_frag"
+    }
+  ],
+  "output": {
+    "count": 3,
+    "item": "mod_id:example_item"
+  }
+}

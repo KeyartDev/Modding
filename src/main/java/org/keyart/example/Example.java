@@ -19,6 +19,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.keyart.example.common.block.entity.ModBlockEntities;
 import org.keyart.example.common.entity.renderer.AnkiRenderer;
 import org.keyart.example.core.network.ENetworks;
+import org.keyart.example.core.recipes.ModRecipes;
 import org.keyart.example.core.registry.*;
 import org.keyart.example.core.screen.ModMenuTypes;
 import org.keyart.example.core.screen.SomePedistalBlockScreen;
@@ -49,6 +50,7 @@ public class Example {
         EntityRegistry.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModRecipes.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in

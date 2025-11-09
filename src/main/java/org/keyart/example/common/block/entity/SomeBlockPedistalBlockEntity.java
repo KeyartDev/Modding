@@ -23,8 +23,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.keyart.example.core.registry.ItemRegistry;
+import org.keyart.example.core.recipes.FragTranformingRecipe;
 import org.keyart.example.core.screen.SomePedistalBlockMenu;
+
+import java.util.Optional;
 
 public class SomeBlockPedistalBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2);
@@ -138,7 +140,9 @@ public class SomeBlockPedistalBlockEntity extends BlockEntity implements MenuPro
     }
 
     private void craftItem() {
-        ItemStack result = new ItemStack(ItemRegistry.EXAMPLE_ITEM.get(), 1);
+        Optional<FragTranformingRecipe> recipe = getCurrentRecipe();
+        ItemStack result = recipe.get().getResultItem(null);
+
         this.itemHandler.extractItem(INPUT_SLOT, 1, false);
 
 
@@ -155,11 +159,24 @@ public class SomeBlockPedistalBlockEntity extends BlockEntity implements MenuPro
     }
 
     private boolean hasRecipe() {
-        boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == ItemRegistry.SOME_BLOCK_FRAG.get();
-        ItemStack result = new ItemStack(ItemRegistry.EXAMPLE_ITEM.get());
+        Optional<FragTranformingRecipe> recipe = getCurrentRecipe();
 
-        return hasCraftingItem && canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
+        if (recipe.isEmpty())
+            return false;
 
+        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
+
+        return canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
+
+    }
+
+    private Optional<FragTranformingRecipe> getCurrentRecipe() {
+        SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
+        for (int i=0;i<itemHandler.getSlots();i++) {
+            inventory.setItem(i, this.itemHandler.getStackInSlot(i));
+        }
+
+        return this.level.getRecipeManager().getRecipeFor(FragTranformingRecipe.Type.INSTANCE, inventory, level);
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {
