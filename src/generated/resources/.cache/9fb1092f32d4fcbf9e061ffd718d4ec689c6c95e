@@ -1,4 +1,5 @@
-// 1.20.1	2025-11-09T19:50:20.3909271	Recipes
+// 1.20.1	2025-11-10T20:08:21.9321011	Recipes
+30ad19ba5be06b5a052a0fc935c6af58f230d74d data/mod_id/advancements/recipes/misc/custom_builder/it_item.json
 cbdadd3b44c92cda42f80ac734c4588ec6c90793 data/mod_id/advancements/recipes/misc/shaped/magic_wand.json
 f76235cb6c8353005ac67e71a3fbe5cb50f8900d data/mod_id/advancements/recipes/misc/shaped/some_block.json
 7927e29b1c87f88186e27d086ce8648b6cde193e data/mod_id/advancements/recipes/misc/shaped/some_pedistal_block.json
@@ -6,7 +7,7 @@ b8156d1ff2e55720503591bd9d91561aba05cb2b data/mod_id/advancements/recipes/misc/s
 548e678f79ba32322502dc206def534e706016f0 data/mod_id/advancements/recipes/misc/shapeless/nether_brush.json
 f5f1971e3c5a8b2d63b2c96c9d40abbe125bdb7b data/mod_id/advancements/recipes/misc/shapeless/some_block_frag.json
 fabf3f805380c639cbcc8198c97d608a51dc6568 data/mod_id/advancements/recipes/misc/smelted/some_block_ore.json
-30ed573108ae7de5b008608f9417dbb817e9d13f data/mod_id/recipes/frag_transformation/some_block_frag.json
+f8f56e78a815eb8e056799387ad28c520e1b1b9c data/mod_id/recipes/custom_builder/it_item.json
 aab702223c1de081aa99c3597495bd2d15fea2b3 data/mod_id/recipes/shaped/magic_wand.json
 3d7c167df5c3dc71463a06c1bc6690d2fd720ca8 data/mod_id/recipes/shaped/some_block.json
 528ca438625eaf95d42db509d2e8d79e2b94a806 data/mod_id/recipes/shaped/some_pedistal_block.json

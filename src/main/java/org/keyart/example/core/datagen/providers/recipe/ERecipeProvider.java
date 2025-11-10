@@ -7,6 +7,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import org.keyart.example.Example;
+import org.keyart.example.core.datagen.providers.recipe.builder.FragTransformingRecipeBuilder;
 import org.keyart.example.core.registry.BlockRegistry;
 import org.keyart.example.core.registry.ItemRegistry;
 
@@ -71,5 +72,11 @@ public class ERecipeProvider extends RecipeProvider {
                 RecipeCategory.MISC, ItemRegistry.SOME_BLOCK_FRAG.get(), 2.5f, 200)
                 .unlockedBy("hasSomeBlockOre", has(BlockRegistry.SOME_BLOCK_ORE.get()))
                 .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "smelted/" + getItemName(BlockRegistry.SOME_BLOCK_ORE.get())));
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------
+        FragTransformingRecipeBuilder.create(RecipeCategory.MISC, ItemRegistry.IT_ITEM.get())
+                .requires(Ingredient.of(ItemRegistry.MYSTIC_CLOCK.get()), 1)
+                .unlockedBy("hasMysticClock", has(ItemRegistry.MYSTIC_CLOCK.get()))
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "custom_builder/" + getItemName(ItemRegistry.IT_ITEM.get())));
     }
 }

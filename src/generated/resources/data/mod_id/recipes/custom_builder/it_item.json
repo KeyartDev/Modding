@@ -2,11 +2,10 @@
   "type": "mod_id:frag_transforming",
   "ingredients": [
     {
-      "item": "mod_id:some_block_frag"
+      "item": "mod_id:mystic_clock"
     }
   ],
   "output": {
-    "count": 3,
-    "item": "mod_id:example_item"
+    "item": "mod_id:it_item"
   }
 }
