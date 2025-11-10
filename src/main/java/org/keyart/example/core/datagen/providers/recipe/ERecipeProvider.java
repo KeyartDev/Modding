@@ -14,6 +14,10 @@ import org.keyart.example.core.registry.ItemRegistry;
 import java.util.function.Consumer;
 
 public class ERecipeProvider extends RecipeProvider {
+    private static final ResourceLocation FRAG_TRANSFORMING_DIR =
+            ResourceLocation.fromNamespaceAndPath(Example.MODID, "custom_builder/" + getItemName(ItemRegistry.IT_ITEM.get()));
+
+
     public ERecipeProvider(PackOutput pOutput) {
         super(pOutput);
     }
@@ -73,10 +77,15 @@ public class ERecipeProvider extends RecipeProvider {
                 .unlockedBy("hasSomeBlockOre", has(BlockRegistry.SOME_BLOCK_ORE.get()))
                 .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "smelted/" + getItemName(BlockRegistry.SOME_BLOCK_ORE.get())));
 
-        //-----------------------------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------CUSTOM RECIPE BUILDER------------------------------------------------------------------------
         FragTransformingRecipeBuilder.create(RecipeCategory.MISC, ItemRegistry.IT_ITEM.get())
                 .requires(Ingredient.of(ItemRegistry.MYSTIC_CLOCK.get()), 1)
                 .unlockedBy("hasMysticClock", has(ItemRegistry.MYSTIC_CLOCK.get()))
-                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "custom_builder/" + getItemName(ItemRegistry.IT_ITEM.get())));
+                .save(pWriter, FRAG_TRANSFORMING_DIR);
+
+        FragTransformingRecipeBuilder.create(RecipeCategory.MISC, Items.EMERALD, 2)
+                .requires(Ingredient.of(ItemRegistry.SOME_BLOCK_FRAG.get()), 1)
+                .unlockedBy("hasSomeBlockFrag", has(ItemRegistry.SOME_BLOCK_FRAG.get()))
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "custom_builder/" + getItemName(Items.EMERALD)));
     }
 }

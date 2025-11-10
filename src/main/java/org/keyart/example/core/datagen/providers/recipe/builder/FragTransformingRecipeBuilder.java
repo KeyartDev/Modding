@@ -71,7 +71,9 @@ public class FragTransformingRecipeBuilder implements RecipeBuilder {
 
     @Override
     public void save(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ResourceLocation pRecipeId) {
-        this.advancement.parent(ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(pRecipeId)).rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
+        this.advancement.parent(ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe",
+                RecipeUnlockedTrigger.unlocked(pRecipeId)).rewards(AdvancementRewards.Builder.recipe(pRecipeId)).requirements(RequirementsStrategy.OR);
+
         pFinishedRecipeConsumer.accept(new Result(pRecipeId, pRecipeId.withPrefix("recipes/" + this.category.getFolderName() + "/"),
                 this.advancement, this.ingredients, this.result, this.count, this.group == null ? "" : this.group));
     }
