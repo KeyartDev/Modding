@@ -1,7 +1,9 @@
 package org.keyart.example.common.block.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +16,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -23,10 +27,12 @@ import org.keyart.example.common.block.entity.ModBlockEntities;
 import org.keyart.example.common.block.entity.SomeBlockPedistalBlockEntity;
 
 public class SomePedistalBlock extends BaseEntityBlock {
+    public static final BooleanProperty CRAFTING = BooleanProperty.create("crafting");
     public static final VoxelShape SHAPE = Block.box(1, 0, 1, 15,  12, 15);
 
     public SomePedistalBlock(Properties pProperties) {
         super(pProperties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(CRAFTING, Boolean.FALSE));
     }
 
     @Override
@@ -52,6 +58,26 @@ public class SomePedistalBlock extends BaseEntityBlock {
     }
 
     @Override
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+        super.animateTick(pState, pLevel, pPos, pRandom);
+
+        if (pState.getValue(CRAFTING)) {
+            for (int i = 0; i < 2; i++) {
+                double x = pPos.getX()+0.5+pRandom.nextInt(-50, 50)/100d;
+                double y = pPos.getY()+1+pRandom.nextInt(0, 50)/100d;
+                double z = pPos.getZ()+0.5+pRandom.nextInt(-50, 50)/100d;
+
+                double vX = (pPos.getX()+0.5)-x;
+                double vY = (pPos.getY()+1)-y;
+                double vZ = (pPos.getZ()+0.5)-z;
+
+                pLevel.addParticle(ParticleTypes.ENCHANT, x, y, z, vX/10, vY/10, vZ/10);
+            }
+
+        }
+    }
+
+    @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
@@ -73,12 +99,15 @@ public class SomePedistalBlock extends BaseEntityBlock {
 
         return createTickerHelper(pBlockEntityType, ModBlockEntities.SOME_PEDISTAL_BE.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
-
-
     }
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new SomeBlockPedistalBlockEntity(pPos, pState);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(CRAFTING);
     }
 }

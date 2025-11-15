@@ -1,9 +1,13 @@
 package org.keyart.example.common.block.entity;
 
+import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -23,13 +27,22 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.keyart.example.common.block.custom.SomePedistalBlock;
 import org.keyart.example.core.recipes.FragTranformingRecipe;
 import org.keyart.example.core.screen.SomePedistalBlockMenu;
 
 import java.util.Optional;
 
 public class SomeBlockPedistalBlockEntity extends BlockEntity implements MenuProvider {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(2);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(2) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+            if (!level.isClientSide) {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
+        }
+    };
 
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
@@ -37,7 +50,7 @@ public class SomeBlockPedistalBlockEntity extends BlockEntity implements MenuPro
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     protected final ContainerData data;
-    private int progress = 0;
+    @Getter private int progress = 0;
     private int maxProgress = 78;
 
     public SomeBlockPedistalBlockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -66,6 +79,15 @@ public class SomeBlockPedistalBlockEntity extends BlockEntity implements MenuPro
             }
         };
     }
+
+    public ItemStack getRenderStack() {
+        if (itemHandler.getStackInSlot(INPUT_SLOT).isEmpty()) {
+            return itemHandler.getStackInSlot(OUTPUT_SLOT);
+        } else {
+            return itemHandler.getStackInSlot(INPUT_SLOT);
+        }
+    }
+
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
@@ -121,7 +143,11 @@ public class SomeBlockPedistalBlockEntity extends BlockEntity implements MenuPro
         progress = pTag.getInt("some_pedistal_block.progress");
     }
 
+
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
+        pState = pState.setValue(SomePedistalBlock.CRAFTING, Boolean.valueOf(this.hasRecipe()));
+        pLevel.setBlock(pPos, pState, 3);
+
         if (hasRecipe()) {
             increaseCraftingProgress();
             setChanged(pLevel, pPos, pState);
@@ -133,11 +159,14 @@ public class SomeBlockPedistalBlockEntity extends BlockEntity implements MenuPro
         } else {
             resetProgress();
         }
+
+        setChanged(pLevel, pPos, pState);
     }
 
     private void resetProgress() {
         progress = 0;
     }
+
 
     private void craftItem() {
         Optional<FragTranformingRecipe> recipe = getCurrentRecipe();
@@ -165,9 +194,9 @@ public class SomeBlockPedistalBlockEntity extends BlockEntity implements MenuPro
             return false;
 
         ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
+        boolean toReturn = canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
 
-        return canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
-
+        return toReturn;
     }
 
     private Optional<FragTranformingRecipe> getCurrentRecipe() {
@@ -185,5 +214,15 @@ public class SomeBlockPedistalBlockEntity extends BlockEntity implements MenuPro
 
     private boolean canInsertAmountIntoOutputSlot(int count) {
         return this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + count <= this.itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        return saveWithoutMetadata();
+    }
+
+    @Override
+    public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 }
