@@ -1,12 +1,15 @@
 package org.keyart.example.common.block.custom;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import org.keyart.example.core.utils.ExecuteDelayed;
 
 import javax.annotation.Nullable;
 
@@ -21,6 +24,20 @@ public class DiceBlock extends Block {
 
     public DiceBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pMovedByPiston) {
+        ExecuteDelayed.addTask(new ExecuteDelayed.DelayedTask(100) {
+            @Override
+            public void run() {
+                pLevel.destroyBlock(pPos, false);
+
+                super.run();
+            }
+        });
+
+        super.onPlace(pState, pLevel, pPos, pOldState, pMovedByPiston);
     }
 
     @Nullable
