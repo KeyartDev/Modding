@@ -15,7 +15,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import org.keyart.example.core.registry.SoundRegistry;
+import org.keyart.example.core.registry.ModSounds;
 import org.keyart.example.core.utils.CooldownUtils;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public class InteractTestsItem extends Item {
                         (RADIUS+pLevel.random.nextDouble()/10)*Math.sin(Math.toRadians(x)) - oneZ
                 );
             }
-            pPlayer.playSound(SoundRegistry.PIP_SOUND.get(), 1f, 1f);
+            pPlayer.playSound(ModSounds.PIP_SOUND.get(), 1f, 1f);
         }
 
         return InteractionResultHolder.success(stack);

@@ -44,5 +44,12 @@
   "entity.mod_id.anki": "Анки",
   "item.mod_id.anki_spawn_egg": "Яйцо спавна Анки",
 
-  "block.mod_id.some_pedistal_block": "Блочный пьедистал"
+  "block.mod_id.some_pedistal_block": "Блочный пьедистал",
+
+  "block.mod_id.verus_log": "Бревно веруса",
+  "block.mod_id.verus_wood": "Верус",
+  "block.mod_id.stripped_verus_log": "Обтёсанное бревно веруса",
+  "block.mod_id.stripped_verus_wood": "Обтёсанный верус",
+  "block.mod_id.verus_planks": "Верусовые доски",
+  "block.mod_id.verus_leaves": "Верусовые листья"
 }

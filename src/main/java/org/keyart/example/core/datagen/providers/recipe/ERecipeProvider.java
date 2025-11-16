@@ -8,14 +8,14 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import org.keyart.example.Example;
 import org.keyart.example.core.datagen.providers.recipe.builder.FragTransformingRecipeBuilder;
-import org.keyart.example.core.registry.BlockRegistry;
-import org.keyart.example.core.registry.ItemRegistry;
+import org.keyart.example.core.registry.ModBlocks;
+import org.keyart.example.core.registry.ModItems;
 
 import java.util.function.Consumer;
 
 public class ERecipeProvider extends RecipeProvider {
     private static final ResourceLocation FRAG_TRANSFORMING_DIR =
-            ResourceLocation.fromNamespaceAndPath(Example.MODID, "custom_builder/" + getItemName(ItemRegistry.IT_ITEM.get()));
+            ResourceLocation.fromNamespaceAndPath(Example.MODID, "custom_builder/" + getItemName(ModItems.IT_ITEM.get()));
 
 
     public ERecipeProvider(PackOutput pOutput) {
@@ -24,7 +24,7 @@ public class ERecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ItemRegistry.MAGIC_WAND.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.MAGIC_WAND.get(), 1)
                 .pattern("gdg")
                 .pattern(" g ")
                 .pattern(" s ")
@@ -32,60 +32,62 @@ public class ERecipeProvider extends RecipeProvider {
                 .define('d', Items.DIAMOND)
                 .define('s', Items.STICK)
                 .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
-                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(ItemRegistry.MAGIC_WAND.get())));
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(ModItems.MAGIC_WAND.get())));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockRegistry.SOME_BLOCK.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SOME_BLOCK.get(), 1)
                 .pattern("fff")
                 .pattern("fff")
                 .pattern("fff")
-                .define('f', ItemRegistry.SOME_BLOCK_FRAG.get())
-                .unlockedBy(getHasName(ItemRegistry.SOME_BLOCK_FRAG.get()), has(ItemRegistry.SOME_BLOCK_FRAG.get()))
-                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(BlockRegistry.SOME_BLOCK.get())));
+                .define('f', ModItems.SOME_BLOCK_FRAG.get())
+                .unlockedBy(getHasName(ModItems.SOME_BLOCK_FRAG.get()), has(ModItems.SOME_BLOCK_FRAG.get()))
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(ModBlocks.SOME_BLOCK.get())));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BlockRegistry.SOME_PEDISTAL_BLOCK.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SOME_PEDISTAL_BLOCK.get(), 1)
                 .pattern(" e ")
                 .pattern(" s ")
                 .pattern(" s ")
-                .define('e', ItemRegistry.EXAMPLE_ITEM.get())
-                .define('s', BlockRegistry.SOME_BLOCK.get())
-                .unlockedBy(getHasName(BlockRegistry.SOME_BLOCK.get()), has(BlockRegistry.SOME_BLOCK.get()))
-                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(BlockRegistry.SOME_PEDISTAL_BLOCK.get())));
+                .define('e', ModItems.EXAMPLE_ITEM.get())
+                .define('s', ModBlocks.SOME_BLOCK.get())
+                .unlockedBy(getHasName(ModBlocks.SOME_BLOCK.get()), has(ModBlocks.SOME_BLOCK.get()))
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shaped/" + getItemName(ModBlocks.SOME_PEDISTAL_BLOCK.get())));
 
 
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.SOME_BLOCK_FRAG.get(), 9)
-                .requires(BlockRegistry.SOME_BLOCK.get())
-                .unlockedBy("hasSomeBlock", has(BlockRegistry.SOME_BLOCK.get()))
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SOME_BLOCK_FRAG.get(), 9)
+                .requires(ModBlocks.SOME_BLOCK.get())
+                .unlockedBy("hasSomeBlock", has(ModBlocks.SOME_BLOCK.get()))
                 .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID,
-                        "shapeless/" + getItemName(ItemRegistry.SOME_BLOCK_FRAG.get())));
+                        "shapeless/" + getItemName(ModItems.SOME_BLOCK_FRAG.get())));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.MYSTIC_CLOCK.get(), 1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MYSTIC_CLOCK.get(), 1)
                 .requires(Items.CLOCK)
-                .requires(ItemRegistry.SOME_BLOCK_FRAG.get())
-                .unlockedBy("hasSomeBlockFrag", has(ItemRegistry.SOME_BLOCK_FRAG.get()))
-                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shapeless/" + getItemName(ItemRegistry.MYSTIC_CLOCK.get())));
+                .requires(ModItems.SOME_BLOCK_FRAG.get())
+                .unlockedBy("hasSomeBlockFrag", has(ModItems.SOME_BLOCK_FRAG.get()))
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shapeless/" + getItemName(ModItems.MYSTIC_CLOCK.get())));
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ItemRegistry.NETHER_BRUSH.get(), 1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.NETHER_BRUSH.get(), 1)
                 .requires(Items.BRUSH)
                 .requires(Items.NETHER_BRICKS)
                 .unlockedBy("hasNetherBrick", has(Blocks.NETHER_BRICKS))
-                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shapeless/" + getItemName(ItemRegistry.NETHER_BRUSH.get())));
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "shapeless/" + getItemName(ModItems.NETHER_BRUSH.get())));
 
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(BlockRegistry.SOME_BLOCK_ORE.get()),
-                RecipeCategory.MISC, ItemRegistry.SOME_BLOCK_FRAG.get(), 2.5f, 200)
-                .unlockedBy("hasSomeBlockOre", has(BlockRegistry.SOME_BLOCK_ORE.get()))
-                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "smelted/" + getItemName(BlockRegistry.SOME_BLOCK_ORE.get())));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.SOME_BLOCK_ORE.get()),
+                RecipeCategory.MISC, ModItems.SOME_BLOCK_FRAG.get(), 2.5f, 200)
+                .unlockedBy("hasSomeBlockOre", has(ModBlocks.SOME_BLOCK_ORE.get()))
+                .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "smelted/" + getItemName(ModBlocks.SOME_BLOCK_ORE.get())));
+
+
 
         //------------------------------------------------------------------------CUSTOM RECIPE BUILDER------------------------------------------------------------------------
-        FragTransformingRecipeBuilder.create(RecipeCategory.MISC, ItemRegistry.IT_ITEM.get())
-                .requires(Ingredient.of(ItemRegistry.MYSTIC_CLOCK.get()), 1)
-                .unlockedBy("hasMysticClock", has(ItemRegistry.MYSTIC_CLOCK.get()))
+        FragTransformingRecipeBuilder.create(RecipeCategory.MISC, ModItems.IT_ITEM.get())
+                .requires(Ingredient.of(ModItems.MYSTIC_CLOCK.get()), 1)
+                .unlockedBy("hasMysticClock", has(ModItems.MYSTIC_CLOCK.get()))
                 .save(pWriter, FRAG_TRANSFORMING_DIR);
 
         FragTransformingRecipeBuilder.create(RecipeCategory.MISC, Items.EMERALD, 2)
-                .requires(Ingredient.of(ItemRegistry.SOME_BLOCK_FRAG.get()), 1)
-                .unlockedBy("hasSomeBlockFrag", has(ItemRegistry.SOME_BLOCK_FRAG.get()))
+                .requires(Ingredient.of(ModItems.SOME_BLOCK_FRAG.get()), 1)
+                .unlockedBy("hasSomeBlockFrag", has(ModItems.SOME_BLOCK_FRAG.get()))
                 .save(pWriter, ResourceLocation.fromNamespaceAndPath(Example.MODID, "custom_builder/" + getItemName(Items.EMERALD)));
     }
 }

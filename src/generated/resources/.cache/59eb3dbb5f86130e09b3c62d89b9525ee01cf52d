@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-09T12:06:37.3204406	Loot Tables
+// 1.20.1	2025-11-16T15:24:33.1570167	Loot Tables
 4098ba4e4c2038c283cdabb01de3b70f4c621b71 data/mod_id/loot_tables/blocks/func_block.json
 5034a8c6c2bbee2403e1f0ea7e7d594b98da9484 data/mod_id/loot_tables/blocks/potted_seven_color_flower.json
 1297e7e7e0262a265d05881c1975c5bad37a89aa data/mod_id/loot_tables/blocks/seven_color_flower.json
@@ -13,3 +13,9 @@ f4a17452f64ae3248f0827bffd9961852bf94f95 data/mod_id/loot_tables/blocks/some_ped
 e93716f4f91efe3dc9f108776628c94e9ac946bb data/mod_id/loot_tables/blocks/some_stairs.json
 438bb32b60c1cd1c5b82646174fe3f4dae518c46 data/mod_id/loot_tables/blocks/some_wall.json
 b8ab98c5b866f341e58e95207bf0e344ab36120a data/mod_id/loot_tables/blocks/strawberry_crop.json
+3c5f4685a6875ee2aebe1b6b8792714aaa55c082 data/mod_id/loot_tables/blocks/stripped_verus_log.json
+0f2a2c2322c3f3d866ec3aa897d579899b00a88e data/mod_id/loot_tables/blocks/stripped_verus_wood.json
+dadac545fae3a967e322a0f816c84c595eab0165 data/mod_id/loot_tables/blocks/verus_leaves.json
+d2fe33d6e00d1f30b6c5e74e47e5d041c10d4048 data/mod_id/loot_tables/blocks/verus_log.json
+0c073310f5387a437c7d77a26502812a10426eee data/mod_id/loot_tables/blocks/verus_planks.json
+8fd12386c0cf89534681498a6b93397ce920766a data/mod_id/loot_tables/blocks/verus_wood.json

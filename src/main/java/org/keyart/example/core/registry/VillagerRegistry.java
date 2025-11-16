@@ -20,7 +20,7 @@ public class VillagerRegistry {
 
     public static final RegistryObject<PoiType> FUNC_POI =
             POI_TYPES.register("func_poi", () ->
-                    new PoiType(ImmutableSet.copyOf(BlockRegistry.FUNC_BLOCK.get().getStateDefinition().getPossibleStates()),
+                    new PoiType(ImmutableSet.copyOf(ModBlocks.FUNC_BLOCK.get().getStateDefinition().getPossibleStates()),
                             1, 1));
 
     public static final RegistryObject<VillagerProfession> FUNC_EXPERT =

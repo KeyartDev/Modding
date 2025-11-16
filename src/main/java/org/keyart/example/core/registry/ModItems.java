@@ -17,7 +17,7 @@ import org.keyart.example.common.item.tool.EToolTiers;
 
 import java.util.List;
 
-public class ItemRegistry {
+public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Example.MODID);
 
     public static final RegistryObject<Item> EXAMPLE_ITEM =
@@ -70,7 +70,7 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> STRAWBERRY_SEEDS =
             ITEMS.register("strawberry_seeds", () ->
-                    new ItemNameBlockItem(BlockRegistry.STRAWBERRY_CROP.get(), new Item.Properties()));
+                    new ItemNameBlockItem(ModBlocks.STRAWBERRY_CROP.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> STRAWBERRY =
             ITEMS.register("strawberry", () ->
@@ -82,11 +82,11 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> KIND_NECRO_DISK =
             ITEMS.register("kind_necro_disk", () ->
-                    new RecordItem(6, SoundRegistry.KIND_NECRO, new Item.Properties().stacksTo(1), 3350));
+                    new RecordItem(6, ModSounds.KIND_NECRO, new Item.Properties().stacksTo(1), 3350));
 
 
     public static final RegistryObject<Item> ANKI_SPAWN_EGG =
-            ITEMS.register("anki_spawn_egg", () -> new ForgeSpawnEggItem(EntityRegistry.ANKI, 0x23F3F3, 0x51A9F6, new Item.Properties()));
+            ITEMS.register("anki_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.ANKI, 0x23F3F3, 0x51A9F6, new Item.Properties()));
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);

@@ -9,7 +9,7 @@ import net.minecraftforge.common.data.GlobalLootModifierProvider;
 import net.minecraftforge.common.loot.LootTableIdCondition;
 import org.keyart.example.Example;
 import org.keyart.example.common.loot.AddItemModifier;
-import org.keyart.example.core.registry.ItemRegistry;
+import org.keyart.example.core.registry.ModItems;
 
 public class EGlobalLootModifiersProvider extends GlobalLootModifierProvider {
     public EGlobalLootModifiersProvider(PackOutput output) {
@@ -26,7 +26,7 @@ public class EGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                                 ).build(),
                                 LootItemRandomChanceCondition.randomChance(0.3f).build()
                         },
-                        ItemRegistry.NETHER_BRUSH.get()
+                        ModItems.NETHER_BRUSH.get()
                 )
         );
 
@@ -38,7 +38,7 @@ public class EGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                                 ).build(),
                                 LootItemRandomChanceCondition.randomChance(0.2f).build()
                         },
-                        ItemRegistry.MYSTIC_CLOCK.get()
+                        ModItems.MYSTIC_CLOCK.get()
                 )
         );
 

@@ -8,7 +8,7 @@ import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import org.keyart.example.Example;
-import org.keyart.example.core.registry.BlockRegistry;
+import org.keyart.example.core.registry.ModBlocks;
 import org.keyart.example.core.tags.CustomBlockTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -31,31 +31,39 @@ public class EBlocksTagProvider extends BlockTagsProvider {
                 .add(Blocks.GRANITE);
 
         tag(BlockTags.FENCES)
-                .add(BlockRegistry.SOME_FENCE.get());
+                .add(ModBlocks.SOME_FENCE.get());
 
         tag(BlockTags.FENCE_GATES)
-                .add(BlockRegistry.SOME_FENCE_GATE.get());
+                .add(ModBlocks.SOME_FENCE_GATE.get());
 
         tag(BlockTags.WALLS)
-                .add(BlockRegistry.SOME_WALL.get());
+                .add(ModBlocks.SOME_WALL.get());
 
 
+        tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.VERUS_LOG.get())
+                .add(ModBlocks.VERUS_WOOD.get())
+                .add(ModBlocks.STRIPPED_VERUS_LOG.get())
+                .add(ModBlocks.STRIPPED_VERUS_WOOD.get());
+
+        tag(BlockTags.PLANKS)
+                .add(ModBlocks.VERUS_PLANKS.get());
     }
 
     private void registerMineableTags() {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(BlockRegistry.SOME_BLOCK.get())
-                .add(BlockRegistry.SOME_BLOCK_ORE.get())
-                .add(BlockRegistry.FUNC_BLOCK.get());
+                .add(ModBlocks.SOME_BLOCK.get())
+                .add(ModBlocks.SOME_BLOCK_ORE.get())
+                .add(ModBlocks.FUNC_BLOCK.get());
     }
 
     private void registerToolRequirementsTags() {
         tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(BlockRegistry.SOME_BLOCK_ORE.get())
-                .add(BlockRegistry.SOME_BLOCK.get());
+                .add(ModBlocks.SOME_BLOCK_ORE.get())
+                .add(ModBlocks.SOME_BLOCK.get());
 
         tag(CustomBlockTags.NEEDS_SOME_TOOL)
-                .add(BlockRegistry.FUNC_BLOCK.get());
+                .add(ModBlocks.FUNC_BLOCK.get());
     }
 
 }

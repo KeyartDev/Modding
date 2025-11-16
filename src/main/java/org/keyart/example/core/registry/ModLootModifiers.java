@@ -9,7 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.keyart.example.Example;
 import org.keyart.example.common.loot.AddItemModifier;
 
-public class LootModifiersRegistry {
+public class ModLootModifiers {
     public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> LOOT_MODIFIER_SERIALIZERS =
             DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Example.MODID);
 

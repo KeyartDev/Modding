@@ -14,8 +14,8 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 import org.keyart.example.common.block.crop.StrawberryCropBlock;
-import org.keyart.example.core.registry.BlockRegistry;
-import org.keyart.example.core.registry.ItemRegistry;
+import org.keyart.example.core.registry.ModBlocks;
+import org.keyart.example.core.registry.ModItems;
 
 import java.util.Set;
 import java.util.function.Function;
@@ -29,31 +29,40 @@ public class EBlockLootProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(BlockRegistry.SOME_BLOCK.get());
-        dropSelf(BlockRegistry.FUNC_BLOCK.get());
+        dropSelf(ModBlocks.SOME_BLOCK.get());
+        dropSelf(ModBlocks.FUNC_BLOCK.get());
 
-        dropSelf(BlockRegistry.SOME_FENCE.get());
-        dropSelf(BlockRegistry.SOME_FENCE_GATE.get());
-        dropSelf(BlockRegistry.SOME_WALL.get());
-        dropSelf(BlockRegistry.SOME_BUTTON.get());
-        dropSelf(BlockRegistry.SOME_PRESSURE_PLATE.get());
-        dropSelf(BlockRegistry.SOME_STAIRS.get());
-        dropSelf(BlockRegistry.SOME_PEDISTAL_BLOCK.get());
+        dropSelf(ModBlocks.SOME_FENCE.get());
+        dropSelf(ModBlocks.SOME_FENCE_GATE.get());
+        dropSelf(ModBlocks.SOME_WALL.get());
+        dropSelf(ModBlocks.SOME_BUTTON.get());
+        dropSelf(ModBlocks.SOME_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.SOME_STAIRS.get());
+        dropSelf(ModBlocks.SOME_PEDISTAL_BLOCK.get());
 
-        add(BlockRegistry.SOME_SLAB.get(),
-                block -> createSlabItemTable(BlockRegistry.SOME_SLAB.get()));
+        add(ModBlocks.SOME_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.SOME_SLAB.get()));
 
-        addOreDrop(BlockRegistry.SOME_BLOCK_ORE.get(), ItemRegistry.SOME_BLOCK_FRAG.get(), 1, 2);
+        addOreDrop(ModBlocks.SOME_BLOCK_ORE.get(), ModItems.SOME_BLOCK_FRAG.get(), 1, 2);
 
         LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition
-                .hasBlockStateProperties(BlockRegistry.STRAWBERRY_CROP.get())
+                .hasBlockStateProperties(ModBlocks.STRAWBERRY_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StrawberryCropBlock.AGE, 5));
 
-        add(BlockRegistry.STRAWBERRY_CROP.get(),
-                createCropDrops(BlockRegistry.STRAWBERRY_CROP.get(), ItemRegistry.STRAWBERRY.get(), ItemRegistry.STRAWBERRY_SEEDS.get(), lootitemcondition$builder));
+        add(ModBlocks.STRAWBERRY_CROP.get(),
+                createCropDrops(ModBlocks.STRAWBERRY_CROP.get(), ModItems.STRAWBERRY.get(), ModItems.STRAWBERRY_SEEDS.get(), lootitemcondition$builder));
 
-        dropSelf(BlockRegistry.SEVEN_COLOR.get());
-        add(BlockRegistry.SEVEN_COLOR_POTTED.get(), createPotFlowerItemTable(BlockRegistry.SEVEN_COLOR.get()));
+        dropSelf(ModBlocks.SEVEN_COLOR.get());
+        add(ModBlocks.SEVEN_COLOR_POTTED.get(), createPotFlowerItemTable(ModBlocks.SEVEN_COLOR.get()));
+
+
+        dropSelf(ModBlocks.VERUS_LOG.get());
+        dropSelf(ModBlocks.VERUS_WOOD.get());
+        dropSelf(ModBlocks.STRIPPED_VERUS_LOG.get());
+        dropSelf(ModBlocks.STRIPPED_VERUS_WOOD.get());
+        dropSelf(ModBlocks.VERUS_PLANKS.get());
+        add(ModBlocks.VERUS_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.SOME_BLOCK.get(), NORMAL_LEAVES_SAPLING_CHANCES));
     }
 
     private void addOreDrop(Block oreBlock, Item drop, int min, int max) {
@@ -67,7 +76,7 @@ public class EBlockLootProvider extends BlockLootSubProvider {
     @Override
     protected Iterable<Block> getKnownBlocks() {
         return Stream.of(
-                BlockRegistry.BLOCKS.getEntries().stream()
+                ModBlocks.BLOCKS.getEntries().stream()
         )
                 .flatMap(Function.identity())
                 .map(RegistryObject::get)

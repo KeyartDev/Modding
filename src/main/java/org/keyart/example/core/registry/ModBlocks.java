@@ -1,10 +1,14 @@
 package org.keyart.example.core.registry;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,12 +19,13 @@ import org.keyart.example.Example;
 import org.keyart.example.common.block.FuncBlock;
 import org.keyart.example.common.block.SomeBlock;
 import org.keyart.example.common.block.crop.StrawberryCropBlock;
+import org.keyart.example.common.block.custom.ModFlammableRotatedPillarBlock;
 import org.keyart.example.common.block.custom.SomePedistalBlock;
 import org.keyart.example.common.block.ore.SomeBlockOre;
 
 import java.util.function.Supplier;
 
-public class BlockRegistry {
+public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Example.MODID);
 
     public static final RegistryObject<Block> SOME_BLOCK =
@@ -28,7 +33,7 @@ public class BlockRegistry {
 
     public static final RegistryObject<Block> SOME_STAIRS =
             registerBlock("some_stairs", () -> new StairBlock(
-                    () -> BlockRegistry.SOME_BLOCK.get().defaultBlockState(),
+                    () -> ModBlocks.SOME_BLOCK.get().defaultBlockState(),
                     BlockBehaviour.Properties.copy(SOME_BLOCK.get())
             ));
 
@@ -84,7 +89,7 @@ public class BlockRegistry {
 
     public static final RegistryObject<Block> SEVEN_COLOR_POTTED =
             BLOCKS.register("potted_seven_color_flower", () ->
-                    new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), BlockRegistry.SEVEN_COLOR,
+                    new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.SEVEN_COLOR,
                             BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM)
                                     .noOcclusion())
             );
@@ -92,6 +97,63 @@ public class BlockRegistry {
     public static final RegistryObject<Block> SOME_PEDISTAL_BLOCK =
             registerBlock("some_pedistal_block", () ->
                     new SomePedistalBlock(BlockBehaviour.Properties.copy(SOME_BLOCK.get()).noOcclusion()));
+
+
+
+    public static final RegistryObject<Block> VERUS_LOG =
+            registerBlock("verus_log", () ->
+                    new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).strength(3f)));
+
+    public static final RegistryObject<Block> VERUS_WOOD =
+            registerBlock("verus_wood", () ->
+                    new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).strength(3f)));
+
+    public static final RegistryObject<Block> STRIPPED_VERUS_LOG =
+            registerBlock("stripped_verus_log", () ->
+                    new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).strength(3f)));
+
+    public static final RegistryObject<Block> STRIPPED_VERUS_WOOD =
+            registerBlock("stripped_verus_wood", () ->
+                    new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD).strength(3f)));
+
+
+    public static final RegistryObject<Block> VERUS_PLANKS =
+            registerBlock("verus_planks", () ->
+                    new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {
+                        @Override
+                        public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                            return true;
+                        }
+
+                        @Override
+                        public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                            return 20;
+                        }
+
+                        @Override
+                        public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                            return 5;
+                        }
+                    });
+
+    public static final RegistryObject<Block> VERUS_LEAVES =
+            registerBlock("verus_leaves", () ->
+                    new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)) {
+                        @Override
+                        public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                            return true;
+                        }
+
+                        @Override
+                        public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                            return 60;
+                        }
+
+                        @Override
+                        public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                            return 30;
+                        }
+                    });
 
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
@@ -102,7 +164,7 @@ public class BlockRegistry {
 
 
     public static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
-        return ItemRegistry.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
 

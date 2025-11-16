@@ -6,7 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.keyart.example.Example;
-import org.keyart.example.core.registry.BlockRegistry;
+import org.keyart.example.core.registry.ModBlocks;
 
 public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Example.MODID);
@@ -14,7 +14,7 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<SomeBlockPedistalBlockEntity>> SOME_PEDISTAL_BE =
             BLOCK_ENTITIES.register("some_pedistal_block_be", () ->
                     BlockEntityType.Builder.of(SomeBlockPedistalBlockEntity::new,
-                            BlockRegistry.SOME_PEDISTAL_BLOCK.get()).build(null));
+                            ModBlocks.SOME_PEDISTAL_BLOCK.get()).build(null));
 
 
     public static void register(IEventBus bus) {

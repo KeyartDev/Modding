@@ -44,5 +44,12 @@
   "entity.mod_id.anki": "Anki",
   "item.mod_id.anki_spawn_egg": "Anki spawn egg",
 
-  "block.mod_id.some_pedistal_block": "Some pedistal block"
+  "block.mod_id.some_pedistal_block": "Some pedistal block",
+
+  "block.mod_id.verus_log": "Verus log",
+  "block.mod_id.verus_wood": "Verus wood",
+  "block.mod_id.stripped_verus_log": "Stripped verus log",
+  "block.mod_id.stripped_verus_wood": "Stripped verus wood",
+  "block.mod_id.verus_planks": "Verus planks",
+  "block.mod_id.verus_leaves": "Verus leaves"
 }

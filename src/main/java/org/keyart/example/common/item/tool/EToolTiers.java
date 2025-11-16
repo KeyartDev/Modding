@@ -7,7 +7,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.ForgeTier;
 import net.minecraftforge.common.TierSortingRegistry;
 import org.keyart.example.Example;
-import org.keyart.example.core.registry.ItemRegistry;
+import org.keyart.example.core.registry.ModItems;
 import org.keyart.example.core.tags.CustomBlockTags;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class EToolTiers {
     public static final Tier SOME = TierSortingRegistry.registerTier(
             new ForgeTier(5, 1500, 5f, 3f, 25,
                     CustomBlockTags.NEEDS_SOME_TOOL, () ->
-                    Ingredient.of(ItemRegistry.SOME_BLOCK_FRAG.get())),
+                    Ingredient.of(ModItems.SOME_BLOCK_FRAG.get())),
             ResourceLocation.fromNamespaceAndPath(Example.MODID, "some_frag"),
             List.of(Tiers.NETHERITE), List.of()
     );

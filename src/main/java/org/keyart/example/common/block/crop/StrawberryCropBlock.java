@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import org.keyart.example.core.registry.ItemRegistry;
+import org.keyart.example.core.registry.ModItems;
 
 public class StrawberryCropBlock extends CropBlock {
     public static final int MAX_AGE = 5;
@@ -19,7 +19,7 @@ public class StrawberryCropBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ItemRegistry.STRAWBERRY_SEEDS.get();
+        return ModItems.STRAWBERRY_SEEDS.get();
     }
 
     @Override

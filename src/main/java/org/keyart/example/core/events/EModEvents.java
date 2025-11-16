@@ -29,9 +29,9 @@ import org.keyart.example.core.custom.thirst.PlayerThirst;
 import org.keyart.example.core.custom.thirst.PlayerThirstProvider;
 import org.keyart.example.core.network.ENetworks;
 import org.keyart.example.core.network.packets.ThirstDataSyncS2CPacket;
-import org.keyart.example.core.registry.BlockRegistry;
-import org.keyart.example.core.registry.EntityRegistry;
-import org.keyart.example.core.registry.ItemRegistry;
+import org.keyart.example.core.registry.ModBlocks;
+import org.keyart.example.core.registry.ModEntities;
+import org.keyart.example.core.registry.ModItems;
 import org.keyart.example.core.registry.VillagerRegistry;
 
 import java.util.List;
@@ -47,11 +47,11 @@ public class EModEvents {
 
                 trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
                         new ItemStack(Items.EMERALD, 2),
-                        new ItemStack(ItemRegistry.STRAWBERRY.get(), 1), 10, 8, 0.02f));
+                        new ItemStack(ModItems.STRAWBERRY.get(), 1), 10, 8, 0.02f));
 
                 trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
                         new ItemStack(Items.EMERALD, 4),
-                        new ItemStack(ItemRegistry.STRAWBERRY_SEEDS.get(), 3), 20, 9, 0.035f));
+                        new ItemStack(ModItems.STRAWBERRY_SEEDS.get(), 3), 20, 9, 0.035f));
             }
 
             if (event.getType() == VillagerRegistry.FUNC_EXPERT.get()) {
@@ -59,12 +59,12 @@ public class EModEvents {
 
                 trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
                         new ItemStack(Items.EMERALD, 25),
-                        new ItemStack(ItemRegistry.IT_ITEM.get(), 1), 1, 15, 0.02f
+                        new ItemStack(ModItems.IT_ITEM.get(), 1), 1, 15, 0.02f
                 ));
 
                 trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
                         new ItemStack(Items.EMERALD, 30),
-                        new ItemStack(ItemRegistry.MYSTIC_CLOCK.get(), 1), 1, 25, 0.02f
+                        new ItemStack(ModItems.MYSTIC_CLOCK.get(), 1), 1, 25, 0.02f
                 ));
             }
         }
@@ -76,12 +76,12 @@ public class EModEvents {
 
             genericTrades.add((pTrader, pRandom) -> new MerchantOffer(
                     new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(BlockRegistry.SEVEN_COLOR.get(), 1), 5, 5, 0.2f
+                    new ItemStack(ModBlocks.SEVEN_COLOR.get(), 1), 5, 5, 0.2f
             ));
 
             rareTrades.add((pTrader, pRandom) -> new MerchantOffer(
                     new ItemStack(Items.DIAMOND, 1),
-                    new ItemStack(ItemRegistry.SOME_PICKAXE.get(), 1), 1, 10, 0.2f
+                    new ItemStack(ModItems.SOME_PICKAXE.get(), 1), 1, 10, 0.2f
             ));
         }
 
@@ -145,7 +145,7 @@ public class EModEvents {
     public static class ModBusEvents {
         @SubscribeEvent
         public static void registerAttributes(EntityAttributeCreationEvent event) {
-            event.put(EntityRegistry.ANKI.get(), AnkiEntity.createAttributes().build());
+            event.put(ModEntities.ANKI.get(), AnkiEntity.createAttributes().build());
         }
     }
 }

@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import org.keyart.example.common.block.entity.SomeBlockPedistalBlockEntity;
-import org.keyart.example.core.registry.BlockRegistry;
+import org.keyart.example.core.registry.ModBlocks;
 
 public class SomePedistalBlockMenu extends AbstractContainerMenu {
     public final SomeBlockPedistalBlockEntity blockEntity;
@@ -105,7 +105,7 @@ public class SomePedistalBlockMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, BlockRegistry.SOME_PEDISTAL_BLOCK.get());
+                pPlayer, ModBlocks.SOME_PEDISTAL_BLOCK.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

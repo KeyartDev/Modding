@@ -41,13 +41,13 @@ public class Example {
         // Register the commonSetup method for modloading
 
 
-        SoundRegistry.register(modEventBus);
-        ItemRegistry.register(modEventBus);
-        BlockRegistry.register(modEventBus);
-        CreativeTabRegistry.register(modEventBus);
-        LootModifiersRegistry.register(modEventBus);
+        ModSounds.register(modEventBus);
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModCreativeTabs.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
         VillagerRegistry.register(modEventBus);
-        EntityRegistry.register(modEventBus);
+        ModEntities.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
@@ -68,7 +68,7 @@ public class Example {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-           ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BlockRegistry.SEVEN_COLOR.getId(), BlockRegistry.SEVEN_COLOR_POTTED);
+           ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.SEVEN_COLOR.getId(), ModBlocks.SEVEN_COLOR_POTTED);
         });
 
         ENetworks.register();
@@ -92,7 +92,7 @@ public class Example {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            EntityRenderers.register(EntityRegistry.ANKI.get(), AnkiRenderer::new);
+            EntityRenderers.register(ModEntities.ANKI.get(), AnkiRenderer::new);
 
             MenuScreens.register(ModMenuTypes.SOME_PEDISTAL_BLOCK_MENU.get(), SomePedistalBlockScreen::new);
         }

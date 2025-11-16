@@ -9,7 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.keyart.example.Example;
 import org.keyart.example.common.entity.AnkiEntity;
 
-public class EntityRegistry {
+public class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Example.MODID);
 
