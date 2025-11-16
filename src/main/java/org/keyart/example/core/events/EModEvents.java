@@ -32,7 +32,7 @@ import org.keyart.example.core.network.packets.ThirstDataSyncS2CPacket;
 import org.keyart.example.core.registry.ModBlocks;
 import org.keyart.example.core.registry.ModEntities;
 import org.keyart.example.core.registry.ModItems;
-import org.keyart.example.core.registry.VillagerRegistry;
+import org.keyart.example.core.registry.ModVillagers;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class EModEvents {
                         new ItemStack(ModItems.STRAWBERRY_SEEDS.get(), 3), 20, 9, 0.035f));
             }
 
-            if (event.getType() == VillagerRegistry.FUNC_EXPERT.get()) {
+            if (event.getType() == ModVillagers.FUNC_EXPERT.get()) {
                 Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
                 trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(

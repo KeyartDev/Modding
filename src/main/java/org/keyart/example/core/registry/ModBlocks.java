@@ -19,6 +19,7 @@ import org.keyart.example.Example;
 import org.keyart.example.common.block.FuncBlock;
 import org.keyart.example.common.block.SomeBlock;
 import org.keyart.example.common.block.crop.StrawberryCropBlock;
+import org.keyart.example.common.block.custom.DiceBlock;
 import org.keyart.example.common.block.custom.ModFlammableRotatedPillarBlock;
 import org.keyart.example.common.block.custom.SomePedistalBlock;
 import org.keyart.example.common.block.ore.SomeBlockOre;
@@ -154,6 +155,9 @@ public class ModBlocks {
                             return 30;
                         }
                     });
+
+    public static final RegistryObject<Block> DICE_BLOCK =
+            BLOCKS.register("dice_block", () -> new DiceBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable()));
 
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

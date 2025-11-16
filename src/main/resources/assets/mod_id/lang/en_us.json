@@ -51,5 +51,7 @@
   "block.mod_id.stripped_verus_log": "Stripped verus log",
   "block.mod_id.stripped_verus_wood": "Stripped verus wood",
   "block.mod_id.verus_planks": "Verus planks",
-  "block.mod_id.verus_leaves": "Verus leaves"
+  "block.mod_id.verus_leaves": "Verus leaves",
+
+  "item.mod_id.dice": "Dice"
 }

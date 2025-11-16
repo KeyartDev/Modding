@@ -3,6 +3,7 @@ package org.keyart.example;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,7 +47,7 @@ public class Example {
         ModBlocks.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModLootModifiers.register(modEventBus);
-        VillagerRegistry.register(modEventBus);
+        ModVillagers.register(modEventBus);
         ModEntities.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
@@ -93,6 +94,7 @@ public class Example {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.ANKI.get(), AnkiRenderer::new);
+            EntityRenderers.register(ModEntities.DICE_PROJECTILE.get(), ThrownItemRenderer::new);
 
             MenuScreens.register(ModMenuTypes.SOME_PEDISTAL_BLOCK_MENU.get(), SomePedistalBlockScreen::new);
         }

@@ -45,6 +45,8 @@ public class EItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.SOME_SHOVEL);
         handheldItem(ModItems.SOME_HOE);
 
+        basicItem(ModItems.DICE_ITEM.get());
+
 
         simpleBlockItemBlockTexture(ModBlocks.SEVEN_COLOR);
 

@@ -59,6 +59,8 @@ public class ModCreativeTabs {
                                 pOutput.accept(ModBlocks.STRIPPED_VERUS_WOOD.get());
                                 pOutput.accept(ModBlocks.VERUS_PLANKS.get());
                                 pOutput.accept(ModBlocks.VERUS_LEAVES.get());
+
+                                pOutput.accept(ModItems.DICE_ITEM.get());
                             })).build());
 
     public static void register(IEventBus bus) {

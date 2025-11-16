@@ -88,6 +88,11 @@ public class ModItems {
     public static final RegistryObject<Item> ANKI_SPAWN_EGG =
             ITEMS.register("anki_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.ANKI, 0x23F3F3, 0x51A9F6, new Item.Properties()));
 
+    public static final RegistryObject<Item> DICE_ITEM =
+            ITEMS.register("dice", () -> new DiceItem(new Item.Properties()));
+
+
+
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }

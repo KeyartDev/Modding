@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "number=up": {
+      "model": "mod_id:block/dice_1"
+    },
+    "number=north": {
+      "model": "mod_id:block/dice_2"
+    },
+    "number=east": {
+      "model": "mod_id:block/dice_3"
+    },
+    "number=south": {
+      "model": "mod_id:block/dice_5"
+    },
+    "number=west": {
+      "model": "mod_id:block/dice_4"
+    },
+    "number=down": {
+      "model": "mod_id:block/dice_6"
+    }
+  }
+}
