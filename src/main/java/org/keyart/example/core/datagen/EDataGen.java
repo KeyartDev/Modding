@@ -19,6 +19,7 @@ import org.keyart.example.core.datagen.providers.recipe.ERecipeProvider;
 import org.keyart.example.core.datagen.providers.tags.EBlocksTagProvider;
 import org.keyart.example.core.datagen.providers.tags.EItemsTagProvider;
 import org.keyart.example.core.datagen.providers.tags.EPoiTypeTagsProvider;
+import org.keyart.example.core.datagen.providers.worldgen.ModWorldGenProvider;
 
 import java.util.List;
 import java.util.Set;
@@ -60,6 +61,8 @@ public class EDataGen {
 
         generator.addProvider(true, new LootTableProvider(packOutput, Set.of(), List.of(
                 new LootTableProvider.SubProviderEntry(EBlockLootProvider::new, LootContextParamSets.BLOCK))));
+
+        generator.addProvider(true, new ModWorldGenProvider(packOutput,lookupProvider));
     }
 }
 
