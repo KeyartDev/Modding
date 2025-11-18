@@ -80,9 +80,9 @@ public class ModItems {
                                     .nutrition(1)
                                     .saturationMod(0.5f).build())));
 
-    public static final RegistryObject<Item> KIND_NECRO_DISK =
-            ITEMS.register("kind_necro_disk", () ->
-                    new RecordItem(6, ModSounds.KIND_NECRO, new Item.Properties().stacksTo(1), 3350));
+    public static final RegistryObject<Item> WELL_KNOWN_SONG_DISK =
+            ITEMS.register("well_known_song_disk", () ->
+                    new RecordItem(6, ModSounds.WELL_KNOWN_SONG, new Item.Properties().stacksTo(1), 3350));
 
 
     public static final RegistryObject<Item> ANKI_SPAWN_EGG =

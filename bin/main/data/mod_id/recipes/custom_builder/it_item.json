@@ -1,0 +1,11 @@
+{
+  "type": "mod_id:frag_transforming",
+  "ingredients": [
+    {
+      "item": "mod_id:mystic_clock"
+    }
+  ],
+  "output": {
+    "item": "mod_id:it_item"
+  }
+}

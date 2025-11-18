@@ -1,0 +1,10 @@
+// 1.20.1	2025-11-16T15:24:33.1550428	Tags for minecraft:block mod id mod_id
+df6cf7e1ca4091ec1deaf73b587a06bf8872e6f1 data/minecraft/tags/blocks/fences.json
+6985cac0de50c32580c66ccda315e2fd52f92cba data/minecraft/tags/blocks/fence_gates.json
+f21fd16588e07a4c81f6744a08aabaf89afbaad3 data/minecraft/tags/blocks/logs_that_burn.json
+c5cc60b98b9e4cd10725b4e730318b6b7f1450d4 data/minecraft/tags/blocks/mineable/pickaxe.json
+a794c09896c11725640b3b3fd26abebc8a5098b9 data/minecraft/tags/blocks/needs_iron_tool.json
+bda79096e6f6326e5a24e5ba8820f761217fffab data/minecraft/tags/blocks/planks.json
+21440caf17bcd8a9bb7338c0827c817609871cdf data/minecraft/tags/blocks/walls.json
+728f51b7ce52cddba90c01dee6fdc440e74d15eb data/mod_id/tags/blocks/needs_some_tool.json
+21880cfef8b5176fd5671210776910d97c568a82 data/mod_id/tags/blocks/stone_rocks.json

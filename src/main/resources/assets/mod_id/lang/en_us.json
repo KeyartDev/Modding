@@ -35,8 +35,8 @@
 
   "sounds.mod_id.pip_sound": "Something piped",
 
-  "item.mod_id.kind_necro_disk": "Music disk",
-  "item.mod_id.kind_necro_disk.desc": "Marvel Ai Factory - Kind Necromancer",
+  "item.mod_id.well_known_song_disk": "Music disk",
+  "item.mod_id.well_known_song_disk.desc": "AI cover - Vile Jewish music",
 
   "key.category.mod_id.example": "Example Category",
   "key.mod_id.example": "Example",

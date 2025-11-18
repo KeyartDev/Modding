@@ -5,9 +5,9 @@
       "mod_id:pip_sound_ev"
     ]
   },
-  "kind_necro": {
+  "well_known_song": {
     "sounds": [
-      "mod_id:kind_necro"
+      "mod_id:well_known_song"
     ],
     "stream": true
   }

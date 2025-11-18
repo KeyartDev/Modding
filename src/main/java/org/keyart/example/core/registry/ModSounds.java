@@ -14,7 +14,7 @@ public class ModSounds {
 
     public static final RegistryObject<SoundEvent> PIP_SOUND = registerSoundEvents("pip_sound_ev");
 
-    public static final RegistryObject<SoundEvent> KIND_NECRO = registerSoundEvents("kind_necro");
+    public static final RegistryObject<SoundEvent> WELL_KNOWN_SONG = registerSoundEvents("well_known_song");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Example.MODID, name)));

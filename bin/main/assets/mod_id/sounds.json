@@ -1,0 +1,14 @@
+{
+  "pip_sound_ev": {
+    "subtitle": "sounds.mod_id.pip_sound",
+    "sounds": [
+      "mod_id:pip_sound_ev"
+    ]
+  },
+  "kind_necro": {
+    "sounds": [
+      "mod_id:kind_necro"
+    ],
+    "stream": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "mod_id:add_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/nether_bridge"
+    },
+    {
+      "chance": 0.3,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "count": 1,
+  "item": "mod_id:nether_brush"
+}

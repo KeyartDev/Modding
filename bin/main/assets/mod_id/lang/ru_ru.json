@@ -1,0 +1,57 @@
+{
+  "item.mod_id.example_item": "Предмет",
+  "creativeTab.example.example_creative_tab": "Вкладка",
+  "item.mod_id.example_item.desc": "Просто предмет с дополнительным текстом.",
+  "block.mod_id.some_block": "Блок",
+  "block.mod_id.some_block_ore": "Руда блока",
+  "item.mod_id.some_block_frag": "Фрагмент блока",
+  "item.mod_id.magic_wand": "Волшебный посох",
+  "item.mod_id.nether_brush": "Адская кисть",
+  "item.mod_id.mystic_clock": "Мистические часы",
+  "block.mod_id.func_block": "Функциональный блок",
+  "item.mod_id.it_item": "Интерактивный предмет",
+  "item.mod_id.it_item.desc": "Кулдаун ещё: %d с.",
+
+  "block.mod_id.some_fence": "Забор",
+  "block.mod_id.some_fence_gate": "Калитка",
+  "block.mod_id.some_wall": "Стена",
+  "block.mod_id.some_slab": "Плита",
+  "block.mod_id.some_button": "Кнопка",
+  "block.mod_id.some_stairs": "Ступеньки",
+  "block.mod_id.some_pressure_plate": "Нажимная плита",
+
+  "item.mod_id.some_sword": "Меч",
+  "item.mod_id.some_axe": "Топор",
+  "item.mod_id.some_pickaxe": "Кирка",
+  "item.mod_id.some_shovel": "Лопата",
+  "item.mod_id.some_hoe": "Мотыга",
+
+  "item.mod_id.strawberry_seeds": "Семена клубники",
+  "item.mod_id.strawberry": "Клубника",
+
+  "block.mod_id.seven_color_flower": "Семицвет",
+
+  "entity.minecraft.villager.mod_id.func_expert": "Эксперт функциональных блоков",
+
+  "sounds.mod_id.pip_sound": "Что-то пикнуло",
+
+  "item.mod_id.kind_necro_disk": "Музыкальная пластинка",
+  "item.mod_id.kind_necro_disk.desc": "Marvel Ai Factory - Добрый некромант",
+
+  "key.category.mod_id.example": "Категория",
+  "key.mod_id.example": "Пример",
+
+  "entity.mod_id.anki": "Анки",
+  "item.mod_id.anki_spawn_egg": "Яйцо спавна Анки",
+
+  "block.mod_id.some_pedistal_block": "Блочный пьедистал",
+
+  "block.mod_id.verus_log": "Бревно веруса",
+  "block.mod_id.verus_wood": "Верус",
+  "block.mod_id.stripped_verus_log": "Обтёсанное бревно веруса",
+  "block.mod_id.stripped_verus_wood": "Обтёсанный верус",
+  "block.mod_id.verus_planks": "Верусовые доски",
+  "block.mod_id.verus_leaves": "Верусовые листья",
+
+  "item.mod_id.dice": "Кубик"
+}

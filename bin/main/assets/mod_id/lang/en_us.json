@@ -1,0 +1,57 @@
+{
+  "item.mod_id.example_item": "Item",
+  "creativeTab.example.example_creative_tab": "Creative tab",
+  "item.mod_id.example_item.desc": "Some item with hover text.",
+  "block.mod_id.some_block": "Block",
+  "block.mod_id.some_block_ore": "Block ore",
+  "item.mod_id.some_block_frag": "Block fragment",
+  "item.mod_id.magic_wand": "Magic wand",
+  "item.mod_id.nether_brush": "Nether brush",
+  "item.mod_id.mystic_clock": "Mystic clock",
+  "block.mod_id.func_block": "Functional block",
+  "item.mod_id.it_item": "Interact item",
+  "item.mod_id.it_item.desc": "Cooldown: %1d s.",
+
+  "block.mod_id.some_fence": "Some fence",
+  "block.mod_id.some_fence_gate": "Some fence gate",
+  "block.mod_id.some_wall": "Some wall",
+  "block.mod_id.some_slab": "Some slab",
+  "block.mod_id.some_button": "Some button",
+  "block.mod_id.some_stairs": "Some stairs",
+  "block.mod_id.some_pressure_plate": "Some pressure plate",
+
+  "item.mod_id.some_sword": "Some sword",
+  "item.mod_id.some_axe": "Some axe",
+  "item.mod_id.some_pickaxe": "Some pickaxe",
+  "item.mod_id.some_shovel": "Some shovel",
+  "item.mod_id.some_hoe": "Some hoe",
+
+  "item.mod_id.strawberry_seeds": "Strawberry seeds",
+  "item.mod_id.strawberry": "Strawberry",
+
+  "block.mod_id.seven_color_flower": "Seven-color flower",
+
+  "entity.minecraft.villager.mod_id.func_expert": "Functional blocks expert",
+
+  "sounds.mod_id.pip_sound": "Something piped",
+
+  "item.mod_id.kind_necro_disk": "Music disk",
+  "item.mod_id.kind_necro_disk.desc": "Marvel Ai Factory - Kind Necromancer",
+
+  "key.category.mod_id.example": "Example Category",
+  "key.mod_id.example": "Example",
+
+  "entity.mod_id.anki": "Anki",
+  "item.mod_id.anki_spawn_egg": "Anki spawn egg",
+
+  "block.mod_id.some_pedistal_block": "Some pedistal block",
+
+  "block.mod_id.verus_log": "Verus log",
+  "block.mod_id.verus_wood": "Verus wood",
+  "block.mod_id.stripped_verus_log": "Stripped verus log",
+  "block.mod_id.stripped_verus_wood": "Stripped verus wood",
+  "block.mod_id.verus_planks": "Verus planks",
+  "block.mod_id.verus_leaves": "Verus leaves",
+
+  "item.mod_id.dice": "Dice"
+}

@@ -35,8 +35,8 @@
 
   "sounds.mod_id.pip_sound": "Что-то пикнуло",
 
-  "item.mod_id.kind_necro_disk": "Музыкальная пластинка",
-  "item.mod_id.kind_necro_disk.desc": "Marvel Ai Factory - Добрый некромант",
+  "item.mod_id.well_known_song_disk": "Музыкальная пластинка",
+  "item.mod_id.well_known_song_disk.desc": "AI cover - Подлая еврейская музыка",
 
   "key.category.mod_id.example": "Категория",
   "key.mod_id.example": "Пример",

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 2.5,
+  "ingredient": {
+    "item": "mod_id:some_block_ore"
+  },
+  "result": "mod_id:some_block_frag"
+}

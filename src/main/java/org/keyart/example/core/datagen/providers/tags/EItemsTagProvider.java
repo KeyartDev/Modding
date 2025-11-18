@@ -24,7 +24,7 @@ public class EItemsTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         tag(ItemTags.MUSIC_DISCS)
-                .add(ModItems.KIND_NECRO_DISK.get());
+                .add(ModItems.WELL_KNOWN_SONG_DISK.get());
 
         tag(ItemTags.LOGS_THAT_BURN)
                 .add(ModBlocks.VERUS_LOG.get().asItem())

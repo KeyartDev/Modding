@@ -49,7 +49,7 @@ public class ModCreativeTabs {
 
                                 pOutput.accept(ModBlocks.SEVEN_COLOR.get());
 
-                                pOutput.accept(ModItems.KIND_NECRO_DISK.get());
+                                pOutput.accept(ModItems.WELL_KNOWN_SONG_DISK.get());
 
                                 pOutput.accept(ModBlocks.SOME_PEDISTAL_BLOCK.get());
 

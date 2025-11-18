@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_some_block_frag": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mod_id:some_block_frag"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mod_id:shaped/some_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_some_block_frag",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mod_id:shaped/some_block"
+    ]
+  },
+  "sends_telemetry_event": false
+}
