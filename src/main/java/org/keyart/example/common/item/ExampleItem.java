@@ -2,9 +2,14 @@ package org.keyart.example.common.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -16,6 +21,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+
+import static org.keyart.example.core.utils.ExecuteDelayed.withDelay;
 
 public class ExampleItem extends Item {
 
@@ -31,6 +38,30 @@ public class ExampleItem extends Item {
         pTooltipComponents.add(Component.keybind("item.mod_id.example_item.desc").withStyle(ChatFormatting.GRAY));
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, TooltipFlag.NORMAL);
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        if (pLevel.isClientSide) {
+            int delay = 20;
+
+            for (int i = 0; i < 4; i++) {
+                withDelay(() -> makeParticle(pPlayer, pLevel, pPlayer.getOnPos().above().north()), 0);
+                withDelay(() -> makeParticle(pPlayer, pLevel, pPlayer.getOnPos().above().east()), delay);
+                withDelay(() -> makeParticle(pPlayer, pLevel, pPlayer.getOnPos().above().south()), delay*2);
+                withDelay(() -> makeParticle(pPlayer, pLevel, pPlayer.getOnPos().above().west()), delay*3);
+            }
+        }
+
+        return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
+    }
+
+    public static void makeParticle(Player player, Level level, BlockPos pos) {
+        System.out.println("Triggered!");
+        level.addParticle(ParticleTypes.END_ROD, pos.getX()+0.5f, pos.getY()+1.0f, pos.getZ()+0.5f,
+                0, 0, 0);
+
+        level.playSound(player, pos, SoundEvents.NOTE_BLOCK_CHIME.get(), SoundSource.AMBIENT);
     }
 
     @Override

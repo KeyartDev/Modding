@@ -7,7 +7,6 @@ import net.minecraftforge.fml.common.Mod;
 import org.keyart.example.Example;
 
 import java.util.ArrayList;
-import java.util.function.Supplier;
 
 /**
  * В параметр нужно передать объект класса {@link ExecuteDelayed.DelayedTask}
@@ -24,6 +23,16 @@ public class ExecuteDelayed {
         }
     }
 
+    public static void withDelay(Processor com, int delay) {
+        ExecuteDelayed.addTask(new DelayedTask(delay) {
+            @Override
+            public void run() {
+                com.execute();
+
+                super.run();
+            }
+        });
+    }
 
     /**
      * В параметр нужно передать объект класса {@link ExecuteDelayed.DelayedTask}
@@ -32,8 +41,16 @@ public class ExecuteDelayed {
         tasks.add(task);
     }
 
-    public static void addTask(Supplier<DelayedTask> task) {
-        tasks.add(task.get());
+    public static void addTask(Processor task, int delay) {
+        DelayedTask task1 = new DelayedTask(delay) {
+            @Override
+            public void run() {
+                task.execute();
+
+                super.run();
+            }
+        };
+        tasks.add(task1);
     }
 
     public static void clearTasks() {
@@ -67,5 +84,10 @@ public class ExecuteDelayed {
                     this.delay--;
             }
         }
+    }
+
+    @FunctionalInterface
+    public interface Processor {
+        void execute();
     }
 }
