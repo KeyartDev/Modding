@@ -24,6 +24,8 @@ import org.keyart.example.core.recipes.ModRecipes;
 import org.keyart.example.core.registry.*;
 import org.keyart.example.core.screen.ModMenuTypes;
 import org.keyart.example.core.screen.SomePedistalBlockScreen;
+import org.keyart.example.core.worldgen.tree.ModFoliagePlacerTypes;
+import org.keyart.example.core.worldgen.tree.ModTrunkPlacerTypes;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -52,6 +54,8 @@ public class Example {
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModRecipes.register(modEventBus);
+        ModTrunkPlacerTypes.register(modEventBus);
+        ModFoliagePlacerTypes.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in

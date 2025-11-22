@@ -12,13 +12,13 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import org.keyart.example.Example;
 import org.keyart.example.core.registry.ModBlocks;
+import org.keyart.example.core.worldgen.tree.custom.VerusFoliagePlacer;
+import org.keyart.example.core.worldgen.tree.custom.VerusTrunkPlacer;
 
 import java.util.List;
 
@@ -37,9 +37,9 @@ public class ModConfiguredFeatures {
 
         register(context, VERUS_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ModBlocks.VERUS_LOG.get()),
-                new StraightTrunkPlacer(3, 2, 0),
+                new VerusTrunkPlacer(5, 3, 1),
                 BlockStateProvider.simple(ModBlocks.VERUS_LEAVES.get()),
-                new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
+                new VerusFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).build());
     }
 
