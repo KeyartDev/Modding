@@ -51,6 +51,14 @@ public class EItemModelProvider extends ItemModelProvider {
         simpleBlockItemBlockTexture(ModBlocks.SEVEN_COLOR);
 
         withExistingParent(ModItems.ANKI_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+
+        saplingItem(ModBlocks.VERUS_SAPLING);
+    }
+
+    private ItemModelBuilder saplingItem(RegistryObject<Block> itemRegistryObject) {
+        return withExistingParent(itemRegistryObject.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(Example.MODID, "block/" + itemRegistryObject.getId().getPath()));
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<Item> item) {

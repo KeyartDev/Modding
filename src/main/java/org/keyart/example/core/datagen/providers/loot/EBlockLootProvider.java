@@ -39,6 +39,7 @@ public class EBlockLootProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.SOME_PRESSURE_PLATE.get());
         dropSelf(ModBlocks.SOME_STAIRS.get());
         dropSelf(ModBlocks.SOME_PEDISTAL_BLOCK.get());
+        dropSelf(ModBlocks.VERUS_SAPLING.get());
 
         add(ModBlocks.SOME_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.SOME_SLAB.get()));
@@ -62,7 +63,7 @@ public class EBlockLootProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.STRIPPED_VERUS_WOOD.get());
         dropSelf(ModBlocks.VERUS_PLANKS.get());
         add(ModBlocks.VERUS_LEAVES.get(), block ->
-                createLeavesDrops(block, ModBlocks.SOME_BLOCK.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+                createLeavesDrops(block, ModBlocks.VERUS_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
     }
 
     private void addOreDrop(Block oreBlock, Item drop, int min, int max) {

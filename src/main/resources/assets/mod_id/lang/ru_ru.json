@@ -53,5 +53,7 @@
   "block.mod_id.verus_planks": "Верусовые доски",
   "block.mod_id.verus_leaves": "Верусовые листья",
 
-  "item.mod_id.dice": "Кубик"
+  "item.mod_id.dice": "Кубик",
+
+  "block.mod_id.verus_sapling": "Саженец веруса"
 }

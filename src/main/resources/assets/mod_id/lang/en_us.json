@@ -53,5 +53,7 @@
   "block.mod_id.verus_planks": "Verus planks",
   "block.mod_id.verus_leaves": "Verus leaves",
 
-  "item.mod_id.dice": "Dice"
+  "item.mod_id.dice": "Dice",
+
+  "block.mod_id.verus_sapling": "Verus sapling"
 }

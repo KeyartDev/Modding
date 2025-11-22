@@ -23,6 +23,7 @@ import org.keyart.example.common.block.custom.DiceBlock;
 import org.keyart.example.common.block.custom.ModFlammableRotatedPillarBlock;
 import org.keyart.example.common.block.custom.SomePedistalBlock;
 import org.keyart.example.common.block.ore.SomeBlockOre;
+import org.keyart.example.core.worldgen.tree.VerusTreeGrower;
 
 import java.util.function.Supplier;
 
@@ -158,6 +159,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> DICE_BLOCK =
             BLOCKS.register("dice_block", () -> new DiceBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable()));
+
+    public static final RegistryObject<Block> VERUS_SAPLING =
+            registerBlock("verus_sapling", () -> new SaplingBlock(new VerusTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

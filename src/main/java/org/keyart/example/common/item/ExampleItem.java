@@ -57,7 +57,7 @@ public class ExampleItem extends Item {
     }
 
     public static void makeParticle(Player player, Level level, BlockPos pos) {
-        System.out.println("Triggered!");
+        //System.out.println("Triggered!");
         level.addParticle(ParticleTypes.END_ROD, pos.getX()+0.5f, pos.getY()+1.0f, pos.getZ()+0.5f,
                 0, 0, 0);
 

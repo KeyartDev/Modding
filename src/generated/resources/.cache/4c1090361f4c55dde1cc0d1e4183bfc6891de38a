@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-18T13:16:18.9873189	Item Models: mod_id
+// 1.20.1	2025-11-22T14:15:37.7955348	Item Models: mod_id
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/mod_id/models/item/anki_spawn_egg.json
 8374529756c479cd8f9f857fab5f0717d6811d8f assets/mod_id/models/item/dice.json
 a0d3130876e35613cb778ce5379327456282b7f0 assets/mod_id/models/item/example_item.json
@@ -21,4 +21,5 @@ c65b59e8edb511fd0588f255969da3bbbf44119a assets/mod_id/models/item/some_sword.js
 445d99e33fcd592941b32e3dc95d690a6d9d0cb9 assets/mod_id/models/item/some_wall.json
 9bff58f0174668f56d24158024f00c3352052212 assets/mod_id/models/item/strawberry.json
 6b053417664a00cce9071c6e7936a125eacd9a44 assets/mod_id/models/item/strawberry_seeds.json
+cf5008e2e629c58dad55e9211bb81df650cfb58a assets/mod_id/models/item/verus_sapling.json
 0ea085194b19699966b5e7ce43b0fc550a80815e assets/mod_id/models/item/well_known_song_disk.json

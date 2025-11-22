@@ -61,6 +61,7 @@ public class ModCreativeTabs {
                                 pOutput.accept(ModBlocks.VERUS_LEAVES.get());
 
                                 pOutput.accept(ModItems.DICE_ITEM.get());
+                                pOutput.accept(ModBlocks.VERUS_SAPLING.get());
                             })).build());
 
     public static void register(IEventBus bus) {

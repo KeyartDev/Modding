@@ -66,6 +66,13 @@ public class EBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.VERUS_PLANKS);
 
         leavesBlock(ModBlocks.VERUS_LEAVES);
+
+        saplingBlock(ModBlocks.VERUS_SAPLING);
+    }
+
+    private void saplingBlock(RegistryObject<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(),
+                models().cross(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
 
     private void leavesBlock(RegistryObject<Block> blockRegistryObject) {
