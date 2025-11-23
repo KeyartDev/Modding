@@ -55,5 +55,7 @@
 
   "item.mod_id.dice": "Кубик",
 
-  "block.mod_id.verus_sapling": "Саженец веруса"
+  "block.mod_id.verus_sapling": "Саженец веруса",
+
+  "block.mod_id.mod_portal": "Блок портала"
 }

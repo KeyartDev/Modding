@@ -62,6 +62,8 @@ public class ModCreativeTabs {
 
                                 pOutput.accept(ModItems.DICE_ITEM.get());
                                 pOutput.accept(ModBlocks.VERUS_SAPLING.get());
+
+                                pOutput.accept(ModBlocks.MOD_PORTAL.get());
                             })).build());
 
     public static void register(IEventBus bus) {

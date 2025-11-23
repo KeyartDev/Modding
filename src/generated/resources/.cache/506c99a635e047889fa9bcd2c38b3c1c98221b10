@@ -1,5 +1,6 @@
-// 1.20.1	2025-11-22T14:15:37.7892269	Block States: mod_id
+// 1.20.1	2025-11-23T13:33:08.9025226	Block States: mod_id
 076c763478132a7cee14bfa0ae7f808fd7705c06 assets/mod_id/blockstates/func_block.json
+53fb39829246ad33fed28fd0d3d3097d41cac375 assets/mod_id/blockstates/mod_portal.json
 c0d85876668d20d41dc926b310ce48ea330cb8e2 assets/mod_id/blockstates/potted_seven_color_flower.json
 cc8aaf63f11eb348fcc20d053a79b13db975182d assets/mod_id/blockstates/seven_color_flower.json
 89449400d67ac0033cb347a6dc3d1b6ac369f8e3 assets/mod_id/blockstates/some_block.json
@@ -21,6 +22,7 @@ a4b3c8c2aad9c0e34f366b1a10403abd4c9b95a3 assets/mod_id/blockstates/verus_planks.
 5bcef9fc6f5ba1fa765f415e284a312946965a48 assets/mod_id/blockstates/verus_sapling.json
 c247c3db16906342f4b4c4fdbd7b8515ee628fc3 assets/mod_id/blockstates/verus_wood.json
 452a2266f0c4b608134baa0531095b621b7b95a4 assets/mod_id/models/block/func_block.json
+6ace083d60aa8ef6fde662aa76d38896005a3bc9 assets/mod_id/models/block/mod_portal.json
 2deaaaedc6444768ba49df765d09b71a03e1e811 assets/mod_id/models/block/potted_seven_color_flower.json
 f0aaf9e2c8405086b3b2d5634a082ae8f1076ecc assets/mod_id/models/block/seven_color_flower.json
 8f580a58e43fd4606e190169c7585c5a830eef67 assets/mod_id/models/block/some_block.json
@@ -61,6 +63,7 @@ f702574da1e632afe15921a0753e1207195aabb3 assets/mod_id/models/block/verus_log.js
 c79d67fde7ca2c96e186acc1414ee7def032641c assets/mod_id/models/block/verus_wood.json
 aa85ca33abb1fbe34c882741dacc414ed53ef9e8 assets/mod_id/models/block/verus_wood_horizontal.json
 62677f7c32528fd142a57cdf458ffc41be10d55f assets/mod_id/models/item/func_block.json
+2139856031e3b9ce217330e7271392e29d49f17c assets/mod_id/models/item/mod_portal.json
 5617978b515409cf60ed9eee53eb14d67f611646 assets/mod_id/models/item/potted_seven_color_flower.json
 0cb93bdb8ebdfe4ee6918ed9d6053a2a221971fa assets/mod_id/models/item/seven_color_flower.json
 a6b60786dd7ef095005361f7398eadacb6d9c110 assets/mod_id/models/item/some_block.json

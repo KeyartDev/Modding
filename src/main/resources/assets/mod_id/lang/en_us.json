@@ -55,5 +55,7 @@
 
   "item.mod_id.dice": "Dice",
 
-  "block.mod_id.verus_sapling": "Verus sapling"
+  "block.mod_id.verus_sapling": "Verus sapling",
+
+  "block.mod_id.mod_portal": "Portal block"
 }

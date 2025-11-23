@@ -1,4 +1,6 @@
-// 1.20.1	2025-11-23T12:33:53.2903496	Registries
+// 1.20.1	2025-11-23T13:36:43.6217685	Registries
+aff526b04f515c7697916dbf131356960951d373 data/mod_id/dimension/testdim.json
+e241e971aacde6f4d0236c622c99d6c9caeb981e data/mod_id/dimension_type/testdim_type.json
 b29d66c3a7c5ca8adb8ad2f4c6283f98f9c6f53f data/mod_id/forge/biome_modifier/add_some_ore.json
 6942e96a91600eda2a250e0fe56e3cf7e2c457e6 data/mod_id/forge/biome_modifier/add_tree_verus.json
 1ba5c5a987e55d0453c70dd20a3bb1a1786ca6d0 data/mod_id/worldgen/biome/test_biome.json

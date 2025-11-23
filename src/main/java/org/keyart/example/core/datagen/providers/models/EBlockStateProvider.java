@@ -68,6 +68,8 @@ public class EBlockStateProvider extends BlockStateProvider {
         leavesBlock(ModBlocks.VERUS_LEAVES);
 
         saplingBlock(ModBlocks.VERUS_SAPLING);
+
+        blockWithItem(ModBlocks.MOD_PORTAL);
     }
 
     private void saplingBlock(RegistryObject<Block> blockRegistryObject) {

@@ -21,6 +21,7 @@ import org.keyart.example.common.block.SomeBlock;
 import org.keyart.example.common.block.crop.StrawberryCropBlock;
 import org.keyart.example.common.block.custom.DiceBlock;
 import org.keyart.example.common.block.custom.ModFlammableRotatedPillarBlock;
+import org.keyart.example.common.block.custom.ModPortalBlock;
 import org.keyart.example.common.block.custom.SomePedistalBlock;
 import org.keyart.example.common.block.ore.SomeBlockOre;
 import org.keyart.example.core.worldgen.tree.VerusTreeGrower;
@@ -163,6 +164,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> VERUS_SAPLING =
             registerBlock("verus_sapling", () -> new SaplingBlock(new VerusTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
+
+    public static final RegistryObject<Block> MOD_PORTAL =
+            registerBlock("mod_portal", () -> new ModPortalBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable().noOcclusion().noCollission()));
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
