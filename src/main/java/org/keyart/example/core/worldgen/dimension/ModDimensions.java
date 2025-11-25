@@ -60,9 +60,9 @@ public class ModDimensions {
         NoiseBasedChunkGenerator noiseBasedChunkGenerator = new NoiseBasedChunkGenerator(
                 MultiNoiseBiomeSource.createFromList(
                         new Climate.ParameterList<>(List.of(Pair.of(
-                                        Climate.parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.TEST_BIOME)),
+                                        Climate.parameters(0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.TEST_BIOME)),
                                 Pair.of(
-                                        Climate.parameters(1.0F, 0.0F, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F), biomeRegistry.getOrThrow(Biomes.PLAINS))
+                                        Climate.parameters(-1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F), biomeRegistry.getOrThrow(Biomes.PLAINS))
 
                         ))),
                 noiseGenSettings.getOrThrow(NoiseGeneratorSettings.AMPLIFIED));

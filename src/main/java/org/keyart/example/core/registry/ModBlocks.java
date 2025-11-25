@@ -2,7 +2,6 @@ package org.keyart.example.core.registry;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
@@ -19,10 +18,7 @@ import org.keyart.example.Example;
 import org.keyart.example.common.block.FuncBlock;
 import org.keyart.example.common.block.SomeBlock;
 import org.keyart.example.common.block.crop.StrawberryCropBlock;
-import org.keyart.example.common.block.custom.DiceBlock;
-import org.keyart.example.common.block.custom.ModFlammableRotatedPillarBlock;
-import org.keyart.example.common.block.custom.ModPortalBlock;
-import org.keyart.example.common.block.custom.SomePedistalBlock;
+import org.keyart.example.common.block.custom.*;
 import org.keyart.example.common.block.ore.SomeBlockOre;
 import org.keyart.example.core.worldgen.tree.VerusTreeGrower;
 
@@ -83,12 +79,7 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> SEVEN_COLOR =
-            registerBlock("seven_color_flower", () ->
-                    new FlowerBlock(() -> MobEffects.LUCK, 5,
-                            BlockBehaviour.Properties.copy(Blocks.ALLIUM)
-                                    .noCollission()
-                                    .noOcclusion())
-            );
+            registerBlock("seven_color_flower", SevenColorBlock::new);
 
     public static final RegistryObject<Block> SEVEN_COLOR_POTTED =
             BLOCKS.register("potted_seven_color_flower", () ->

@@ -80,6 +80,7 @@
     [
       "minecraft:glow_lichen",
       "minecraft:forest_flowers",
+      "mod_id:sevencolor_placed",
       "minecraft:patch_large_fern",
       "minecraft:trees_plains",
       "minecraft:brown_mushroom_normal",

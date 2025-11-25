@@ -23,6 +23,8 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> VERUS_PLACED_KEY = registerKey("verus_placed");
 
+    public static final ResourceKey<PlacedFeature> SEVENCOLOR_PLACED_KEY = registerKey("sevencolor_placed");
+
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -33,6 +35,8 @@ public class ModPlacedFeatures {
         register(context, VERUS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.VERUS_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
                         ModBlocks.VERUS_SAPLING.get()));
+
+        register(context, SEVENCOLOR_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SEVENCOLOR_KEY), VegetationPlacements.worldSurfaceSquaredWithCount(2));
     }
 
 

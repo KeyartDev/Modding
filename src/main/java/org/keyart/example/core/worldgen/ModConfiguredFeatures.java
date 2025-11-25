@@ -2,15 +2,14 @@ package org.keyart.example.core.worldgen;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
@@ -27,7 +26,11 @@ public class ModConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> VERUS_KEY = registerKey("verus");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SEVENCOLOR_KEY = registerKey("sevencolor");
+
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+        var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
+
         RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
 
         List<OreConfiguration.TargetBlockState> overworldSomeOres = List.of(OreConfiguration.target(stoneReplaceable,
@@ -41,6 +44,9 @@ public class ModConfiguredFeatures {
                 BlockStateProvider.simple(ModBlocks.VERUS_LEAVES.get()),
                 new VerusFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).build());
+
+        register(context, SEVENCOLOR_KEY, Feature.FLOWER, new RandomPatchConfiguration(64, 4, 2,
+                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.SEVEN_COLOR.get())))));
     }
 
 
