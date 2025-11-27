@@ -1,8 +1,8 @@
 package org.keyart.example.common.item;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -16,7 +16,9 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+import org.keyart.example.common.client.particle.ModParticle;
 
+import java.awt.*;
 import java.util.List;
 
 public class MysticClockItem extends Item {
@@ -32,6 +34,8 @@ public class MysticClockItem extends Item {
         super(new Properties()
                 .stacksTo(1)
                 .rarity(Rarity.RARE));
+
+
     }
 
     @Override
@@ -41,23 +45,47 @@ public class MysticClockItem extends Item {
 
         if (player.tickCount % 200 != 0) return;
 
+        int numberEffect = level.random.nextInt(4);
+        MobEffect effect = EFFECTS.get(numberEffect);
+        Color color;
+
+
         if (!level.isClientSide) {
-            int numberEffect = level.random.nextInt(4);
-            MobEffect effect = EFFECTS.get(numberEffect);
             int amplifier = level.random.nextInt(3);
             MobEffectInstance mobEffectInstance = new MobEffectInstance(effect, 100, amplifier, true, true);
             player.addEffect(mobEffectInstance);
             lastEffect = mobEffectInstance;
-        } else {
-            player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 1, 1);
+
+            if (effect.equals(MobEffects.REGENERATION)) {
+                color = new Color(255, 0, 77);
+            } else if (effect.equals(MobEffects.ABSORPTION)) {
+                color = new Color(11, 239, 183);
+            } else if (effect.equals(MobEffects.SATURATION)) {
+                color = new Color(255, 133, 0);
+            } else if (effect.equals(MobEffects.LUCK)) {
+                color = new Color(0, 255, 13);
+            } else {
+                color = new Color(255, 255, 255);
+            }
+
             Vec3 pos = player.position();
             for (int x=0;x<15;x++) {
-                player.level().addParticle(ParticleTypes.END_ROD,
+                ((ServerLevel) level).sendParticles(new ModParticle.Options(ModParticle.Constructor.builder()
+                                .color(color.getRGB())
+                                .diameter(0.15F)
+                                .lifeTime(40)
+                                .scaleModifier(0.95f)
+                                .build()),
                         pos.x + (level.random.nextDouble() - 0.5),
                         pos.y + (level.random.nextDouble() + level.random.nextInt(2)),
                         pos.z + (level.random.nextDouble() - 0.5),
-                        0, 0, 0);
+                        0, 0, 0, 0, 0.1);
             }
+        } else {
+
+
+            player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 1, 1);
+
         }
     }
 

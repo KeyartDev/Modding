@@ -61,6 +61,8 @@ public class Example {
         ModFoliagePlacerTypes.register(modEventBus);
         ModTerrablender.registerBiomes();
 
+        ModParticleTypes.register(modEventBus);
+
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

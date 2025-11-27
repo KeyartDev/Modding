@@ -1,7 +1,6 @@
 package org.keyart.example.common.block.custom;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -25,6 +24,9 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 import org.keyart.example.common.block.entity.ModBlockEntities;
 import org.keyart.example.common.block.entity.SomeBlockPedistalBlockEntity;
+import org.keyart.example.common.client.particle.ModParticle;
+
+import java.awt.*;
 
 public class SomePedistalBlock extends BaseEntityBlock {
     public static final BooleanProperty CRAFTING = BooleanProperty.create("crafting");
@@ -62,7 +64,7 @@ public class SomePedistalBlock extends BaseEntityBlock {
         super.animateTick(pState, pLevel, pPos, pRandom);
 
         if (pState.getValue(CRAFTING)) {
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 5; i++) {
                 double x = pPos.getX()+0.5+pRandom.nextInt(-50, 50)/100d;
                 double y = pPos.getY()+1+pRandom.nextInt(0, 50)/100d;
                 double z = pPos.getZ()+0.5+pRandom.nextInt(-50, 50)/100d;
@@ -71,7 +73,11 @@ public class SomePedistalBlock extends BaseEntityBlock {
                 double vY = (pPos.getY()+1)-y;
                 double vZ = (pPos.getZ()+0.5)-z;
 
-                pLevel.addParticle(ParticleTypes.ENCHANT, x, y, z, vX/10, vY/10, vZ/10);
+                double pathLength = Math.sqrt(Math.pow(vX, 2) + Math.pow(vY, 2) + Math.pow(vZ, 2));
+                double speed = Math.sqrt(Math.pow(vX/10, 2) + Math.pow(vY/10, 2) + Math.pow(vZ/10, 2));
+                double lifeTime = pathLength / speed;
+
+                pLevel.addParticle(new ModParticle.Options((new Color(151, 11, 221)).getRGB(), 0.1F, (int) lifeTime, 0.5F), x, y, z, vX/10, vY/10, vZ/10);
             }
 
         }
